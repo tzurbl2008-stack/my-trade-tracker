@@ -2,7 +2,14 @@
 <html lang="he" dir="rtl" data-dark="false">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="יומן מסחר">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>יומן מסחר</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -126,7 +133,14 @@ select.fs{padding:6px 10px;border:1px solid var(--border);border-radius:8px;back
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 .card,.sc,#hdr,#sb{transition:background .2s,border-color .2s}
-@media(max-width:768px){:root{--sw:0px}.sg{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  :root{--sw:0px}
+  .sg{grid-template-columns:1fr 1fr}
+  #cnt{padding:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  #hdr{padding:0 14px;padding-top:env(safe-area-inset-top)}
+  .sv{font-size:18px}
+  body{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -790,6 +804,11 @@ function render(){
     case'analytics':renderAnalytics();break;
     case'settings':renderSettings();break;
   }
+}
+
+// SERVICE WORKER
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 }
 
 // INIT

@@ -19,7 +19,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Fetch news and send WhatsApp
+      - name: Fetch news and send Telegram message
         env:
-          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/fetch_stock_news.py

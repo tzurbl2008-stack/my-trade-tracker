@@ -1,0 +1,36 @@
+name: Daily Stock News Alerts
+
+on:
+  # 14:15 Israel time (UTC+3 summer / UTC+2 winter)
+  # Adjust cron to 12:15 UTC in winter (Nov–Mar): '15 12 * * 1-5'
+  schedule:
+    - cron: '15 11 * * 1-5'   # 11:15 UTC = 14:15 IST (summer, UTC+3)
+  workflow_dispatch:            # manual trigger for testing
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch stock news
+        run: python scripts/fetch_stock_news.py > /tmp/news_email.html
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "📈 Daily Stock News – RGTI | NOW | LUNR | OPEN | IREN"
+          to: tzurbl2008@gmail.com
+          from: My Trade Tracker <${{ secrets.EMAIL_USERNAME }}>
+          html_body: file:///tmp/news_email.html

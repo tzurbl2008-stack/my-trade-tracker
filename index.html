@@ -164,7 +164,7 @@ let S={accounts:[],activeId:null,trades:[],dark:false,page:'dashboard',tf:'all',
 // STORAGE
 function load(){
   try{const d=localStorage.getItem('tt3');if(d)Object.assign(S,JSON.parse(d))}catch(e){}
-  if(!S.accounts.length)initSample();
+  // no sample data — start fresh
 }
 function save(){
   localStorage.setItem('tt3',JSON.stringify({accounts:S.accounts,activeId:S.activeId,trades:S.trades,dark:S.dark}));
@@ -260,32 +260,6 @@ function getTips(aid){
   return res.slice(0,5);
 }
 
-// SAMPLE DATA
-function initSample(){
-  const aid=uid();
-  const ago=d=>new Date(Date.now()-d*864e5).toISOString();
-  S.accounts=[{id:aid,name:'תיק ראשי',init:50000,currency:'₪',created:ago(90)}];
-  S.activeId=aid;
-  const raw=[
-    {sym:'AAPL',dir:'long',e:182,s:177,l:192,sh:15,ex:190,do:55,dc:50},
-    {sym:'MSFT',dir:'long',e:410,s:400,l:430,sh:5,ex:425,do:45,dc:40},
-    {sym:'TSLA',dir:'short',e:195,s:205,l:175,sh:10,ex:188,do:35,dc:30},
-    {sym:'NVDA',dir:'long',e:850,s:820,l:910,sh:3,ex:835,do:25,dc:20},
-    {sym:'META',dir:'long',e:515,s:500,l:545,sh:4,ex:538,do:15,dc:10},
-    {sym:'AMZN',dir:'long',e:185,s:180,l:200,sh:12,ex:193,do:8,dc:3},
-  ];
-  S.trades=raw.map(r=>{
-    const p=calcPnL(r.dir,r.e,r.ex,r.sh);
-    const ra=calcRisk(r.e,r.s,r.sh);
-    const rv=calcRR(r.e,r.s,r.l);
-    return{id:uid(),aid,symbol:r.sym,dir:r.dir,ep:r.e,sp:r.s,lp:r.l,shares:r.sh,
-      inv:r.e*r.sh,status:'closed',od:ago(r.do).slice(0,10),cd:ago(r.dc).slice(0,10),
-      xp:r.ex,pnl:p,pp:(p/(r.e*r.sh))*100,ra,rp:(ra/50000)*100,rr:rv,notes:''};
-  });
-  S.trades.push({id:uid(),aid,symbol:'GOOG',dir:'long',ep:175,sp:168,lp:190,
-    shares:8,inv:1400,status:'open',od:today(),notes:''});
-  save();
-}
 
 // CHART
 function drawChart(id,data){
@@ -363,7 +337,7 @@ function renderHDR(){
 
 // DASHBOARD
 function renderDash(){
-  if(!S.activeId){document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">🏦</div><div class="et">אין חשבון</div><div class="esb">הוסף חשבון בהגדרות</div></div>';return}
+  if(!S.activeId){document.getElementById('cnt').innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:70vh"><div style="text-align:center;max-width:380px;padding:32px"><div style="font-size:56px;margin-bottom:16px">📈</div><div style="font-size:22px;font-weight:700;margin-bottom:8px">ברוך הבא ליומן המסחר</div><div style="color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.6">לפני שמתחילים — צור את החשבון הראשון שלך עם שם התיק והיתרה ההתחלתית</div><button class="btn bp" style="font-size:15px;padding:12px 28px" onclick="openAddAcc()">+ צור חשבון ראשון</button></div></div>`;return}
   const st=getStats(S.activeId);
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
   const cv=getCurve(S.activeId);const tp=getTips(S.activeId);

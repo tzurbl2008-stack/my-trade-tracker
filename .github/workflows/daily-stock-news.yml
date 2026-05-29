@@ -19,8 +19,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Fetch news and send Telegram message
+      - name: Fetch news and send WhatsApp
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GREENAPI_INSTANCE_ID: ${{ secrets.GREENAPI_INSTANCE_ID }}
+          GREENAPI_TOKEN: ${{ secrets.GREENAPI_TOKEN }}
         run: python scripts/fetch_stock_news.py

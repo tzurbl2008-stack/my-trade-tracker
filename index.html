@@ -7,208 +7,217 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="יומן מסחר">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#1d4ed8">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <title>יומן מסחר</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f4f8;--bg2:#e2e8f0;--card:#fff;
-  --text:#1e293b;--text2:#64748b;--text3:#94a3b8;
-  --border:#e2e8f0;--primary:#3b82f6;--primary-h:#2563eb;
-  --green:#16a34a;--gbg:rgba(22,163,74,.1);
-  --red:#dc2626;--rbg:rgba(220,38,38,.1);
+  --bg:#f0f4f9;--bg2:#e2e8f0;--card:#fff;
+  --text:#0f172a;--text2:#64748b;--text3:#94a3b8;
+  --border:#e2e8f0;
+  --primary:#2563eb;--ph:#1d4ed8;--pl:rgba(37,99,235,.1);
+  --green:#16a34a;--gbg:rgba(22,163,74,.1);--gb:rgba(22,163,74,.2);
+  --red:#dc2626;--rbg:rgba(220,38,38,.1);--rb:rgba(220,38,38,.2);
   --orange:#ea580c;--obg:rgba(234,88,12,.1);
   --yellow:#ca8a04;--ybg:rgba(202,138,4,.1);
-  --sw:230px;--hh:56px;--bnav:60px;--r:14px;
-  --sh:0 1px 4px rgba(0,0,0,.07);--shm:0 4px 16px rgba(0,0,0,.1)
+  --sw:240px;--hh:56px;--bn:62px;--r:16px;
+  --sh:0 1px 4px rgba(0,0,0,.06);--shm:0 4px 20px rgba(0,0,0,.1)
 }
 [data-dark=true]{
-  --bg:#0a0f1e;--bg2:#111827;--card:#1a2235;
-  --text:#f1f5f9;--text2:#8b9ab0;--text3:#4b5e75;
-  --border:#1e2d45;--sh:0 1px 4px rgba(0,0,0,.4);--shm:0 4px 16px rgba(0,0,0,.5)
+  --bg:#0d1117;--bg2:#161b22;--card:#1c2433;
+  --text:#e6edf3;--text2:#8b949e;--text3:#484f58;
+  --border:#21262d;
+  --sh:0 1px 4px rgba(0,0,0,.4);--shm:0 4px 20px rgba(0,0,0,.5)
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;direction:rtl;transition:background .25s,color .25s}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;direction:rtl;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
 
 /* ── SIDEBAR desktop ── */
-#sb{width:var(--sw);background:#0f172a;height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100;border-left:1px solid rgba(255,255,255,.05)}
-[data-dark=true] #sb{background:#060d1a}
-.sb-logo{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:11px}
-.sb-icon{width:38px;height:38px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
-.sb-title{color:#f1f5f9;font-size:15px;font-weight:700;letter-spacing:-.2px}
-.sb-sub{color:#4b6280;font-size:10px;margin-top:1px}
+#sb{width:var(--sw);background:#0a0f1e;height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100;border-left:1px solid rgba(255,255,255,.04)}
+[data-dark=true] #sb{background:#010409}
+.sb-logo{padding:22px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:12px}
+.sb-ico{width:40px;height:40px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 14px rgba(37,99,235,.4)}
+.sb-title{color:#f1f5f9;font-size:15px;font-weight:700}
+.sb-sub{color:#334155;font-size:10px;margin-top:1px}
 #snav{padding:10px 8px;flex:1}
-.ni{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;color:#64748b;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
+.ni{display:flex;align-items:center;gap:11px;padding:10px 13px;border-radius:10px;color:#64748b;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
 .ni:hover{background:rgba(255,255,255,.06);color:#cbd5e1}
-.ni.on{background:rgba(59,130,246,.18);color:#60a5fa}
-.ni .ic{font-size:16px;flex-shrink:0}
-.sb-acc{padding:10px 8px;border-top:1px solid rgba(255,255,255,.07)}
-.sb-acc select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:9px 11px;color:#cbd5e1;font-size:12px;cursor:pointer;outline:none;font-family:inherit}
+.ni.on{background:rgba(37,99,235,.18);color:#93c5fd}
+.ni .ic{font-size:17px;flex-shrink:0}
+.sb-acc{padding:10px 8px;border-top:1px solid rgba(255,255,255,.05)}
+.sb-acc select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:9px 12px;color:#cbd5e1;font-size:12px;cursor:pointer;outline:none;font-family:inherit}
 .sb-acc select option{background:#1e293b}
 
 /* ── MAIN ── */
 #main{margin-right:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
-#hdr{height:var(--hh);background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
-.hdr-title{font-size:17px;font-weight:700;flex:1;letter-spacing:-.3px}
-.hdr-acc{display:flex;flex-direction:column;align-items:flex-end;background:var(--bg2);padding:5px 12px;border-radius:9px;border:1px solid var(--border)}
-.hdr-acc-lbl{font-size:10px;color:var(--text2);font-weight:500}
-.hdr-acc-val{font-size:15px;font-weight:700;color:var(--primary)}
-.bic{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s}
-.bic:hover{background:var(--bg2);color:var(--text)}
-#cnt{padding:20px;flex:1;max-width:100%}
+#hdr{height:var(--hh);background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 18px;gap:10px;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
+.hdr-title{font-size:17px;font-weight:800;flex:1;letter-spacing:-.4px}
+.hdr-bal{display:flex;flex-direction:column;align-items:flex-end;background:var(--pl);padding:5px 12px;border-radius:10px;border:1px solid rgba(37,99,235,.15)}
+.hdr-bal-l{font-size:10px;color:var(--primary);font-weight:700;letter-spacing:.03em}
+.hdr-bal-v{font-size:15px;font-weight:800;color:var(--primary);letter-spacing:-.3px}
+.ico-btn{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s}
+.ico-btn:hover{background:var(--bg2)}
+#cnt{padding:18px;flex:1}
 
-/* ── BOTTOM NAV mobile ── */
-#bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 12px rgba(0,0,0,.08)}
-.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 0;cursor:pointer;color:var(--text3);transition:color .15s;user-select:none;-webkit-tap-highlight-color:transparent}
+/* ── BOTTOM NAV ── */
+#bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--card);border-top:1px solid var(--border);box-shadow:0 -4px 24px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom);align-items:stretch;height:calc(var(--bn) + env(safe-area-inset-bottom))}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--text3);font-size:10px;font-weight:700;user-select:none;-webkit-tap-highlight-color:transparent;padding:6px 0;transition:color .15s}
 .bni.on{color:var(--primary)}
-.bni-ic{font-size:22px;line-height:1}
-.bni-lbl{font-size:10px;font-weight:600}
+.bni-ic{font-size:23px;line-height:1}
+.bni-add{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.bni-add-circle{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,99,235,.5);line-height:1;padding-bottom:3px;transition:transform .15s,box-shadow .15s}
+.bni-add-circle:active{transform:scale(.9);box-shadow:0 2px 8px rgba(37,99,235,.3)}
 
-/* ── FAB ── */
-.fab{position:fixed;left:18px;z-index:99;width:54px;height:54px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 18px rgba(59,130,246,.55);display:none;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
-.fab:active{transform:scale(.91);box-shadow:0 2px 8px rgba(59,130,246,.4)}
+/* ── HERO ── */
+.hero{background:linear-gradient(140deg,#1e3a8a 0%,#1d4ed8 55%,#2563eb 100%);border-radius:22px;padding:24px 22px 20px;margin-bottom:14px;color:#fff;box-shadow:0 8px 32px rgba(29,78,216,.35)}
+.hero-acct{font-size:12px;opacity:.65;font-weight:600;margin-bottom:10px;letter-spacing:.03em}
+.hero-lbl{font-size:12px;opacity:.6;margin-bottom:4px;font-weight:500}
+.hero-val{font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1}
+.hero-pnl{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:4px 12px;background:rgba(255,255,255,.15);border-radius:20px;font-size:13px;font-weight:700}
+.hero-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:18px;background:rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
+.hero-cell{background:rgba(0,0,20,.15);padding:11px 0;text-align:center}
+.hero-cv{font-size:17px;font-weight:800;line-height:1;letter-spacing:-.3px}
+.hero-cl{font-size:10px;opacity:.6;margin-top:3px;font-weight:600}
 
-/* ── CARDS & STATS ── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh)}
-.ch{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
-.ct{font-size:14px;font-weight:600}
-.cb{padding:16px 18px}
+/* ── STAT GRID ── */
 .sg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
 .sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
-.sl{font-size:11px;color:var(--text2);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
-.sv{font-size:22px;font-weight:700;line-height:1.2}
+.sl{font-size:10px;color:var(--text2);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.sv{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:-.5px}
 .ss{font-size:11px;color:var(--text3);margin-top:3px}
 .sc.g .sv{color:var(--green)}.sc.r .sv{color:var(--red)}.sc.b .sv{color:var(--primary)}
 
-/* ── HERO CARD mobile ── */
-.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 60%,#3b82f6 100%);border-radius:18px;padding:22px 20px 18px;margin-bottom:14px;color:#fff;box-shadow:0 6px 24px rgba(37,99,235,.35)}
-.hero-lbl{font-size:12px;opacity:.75;font-weight:500;margin-bottom:3px}
-.hero-val{font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1.1}
-.hero-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-.hero-stat{text-align:center}
-.hero-stat-v{font-size:16px;font-weight:700}
-.hero-stat-l{font-size:10px;opacity:.7;margin-top:1px}
-.hero-divider{width:1px;height:32px;background:rgba(255,255,255,.2)}
-
-/* ── TRADE CARDS mobile ── */
-.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;overflow:hidden;transition:box-shadow .15s}
-.tc-head{display:flex;align-items:center;padding:13px 15px;gap:10px}
-.tc-sym{font-weight:800;font-size:17px;flex:1;letter-spacing:-.3px}
-.tc-pnl{font-weight:700;font-size:16px;text-align:left}
-.tc-body{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding:0 15px 13px}
-.tc-kv{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border)}
-.tc-kv:last-child{border-bottom:none}
-.tc-k{color:var(--text2)}
-.tc-v{font-weight:600;color:var(--text)}
-.tc-actions{display:flex;gap:8px;padding:10px 15px;border-top:1px solid var(--border);background:var(--bg)}
-.tc-analysis{padding:12px 15px;background:var(--bg2);border-top:1px solid var(--border);font-size:12px}
-.tc-score-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px}
-.tc-score-fill{height:100%;border-radius:3px}
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh)}
+.ch{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ct{font-size:14px;font-weight:800;letter-spacing:-.3px}
+.cb{padding:16px 18px}
 
 /* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:inherit;-webkit-tap-highlight-color:transparent}
-.bp{background:var(--primary);color:#fff}.bp:hover{background:var(--primary-h)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s;font-family:inherit;-webkit-tap-highlight-color:transparent;letter-spacing:-.1px}
+.bp{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.3)}.bp:hover{background:var(--ph)}.bp:active{transform:scale(.97)}
 .bs{background:var(--bg2);color:var(--text);border:1px solid var(--border)}.bs:hover{background:var(--border)}
-.bd{background:var(--rbg);color:var(--red);border:1px solid rgba(220,38,38,.15)}.bd:hover{background:rgba(220,38,38,.18)}
-.bg2{background:var(--gbg);color:var(--green);border:1px solid rgba(22,163,74,.2)}.bg2:hover{background:rgba(22,163,74,.2)}
-.sm{padding:5px 11px;font-size:11px}
+.bd{background:var(--rbg);color:var(--red);border:1px solid var(--rb)}.bd:hover{background:rgba(220,38,38,.18)}
+.bg2{background:var(--gbg);color:var(--green);border:1px solid var(--gb)}.bg2:hover{background:rgba(22,163,74,.2)}
+.sm{padding:5px 11px;font-size:11px;border-radius:8px}
 
 /* ── BADGES ── */
 .badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
 .bg3{background:var(--gbg);color:var(--green)}
-.br{background:var(--rbg);color:var(--red)}
+.br2{background:var(--rbg);color:var(--red)}
 .bo{background:var(--obg);color:var(--orange)}
 .by{background:var(--ybg);color:var(--yellow)}
-.bb{background:rgba(59,130,246,.12);color:var(--primary)}
+.bb{background:var(--pl);color:var(--primary)}
 .bgr{background:var(--bg2);color:var(--text2)}
+
+/* ── TRADE CARD mobile ── */
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;overflow:hidden}
+.tc-head{display:flex;align-items:center;padding:13px 15px;gap:8px}
+.tc-sym{font-weight:800;font-size:18px;letter-spacing:-.5px;flex:1}
+.tc-pnl{font-weight:800;font-size:16px;letter-spacing:-.3px}
+.tc-date{font-size:11px;color:var(--text3);padding:0 15px 9px;font-weight:500}
+.tc-grid{display:grid;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.tc-grid-3{grid-template-columns:1fr 1fr 1fr}
+.tc-grid-2{grid-template-columns:1fr 1fr}
+.tc-cell{padding:10px 14px;background:var(--card)}
+.tc-cell+.tc-cell{border-right:1px solid var(--border)}
+.tc-cl{font-size:10px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.tc-cv{font-size:14px;font-weight:700;letter-letters:-.2px}
+.tc-actions{display:flex;gap:8px;padding:11px 14px;background:var(--bg)}
+.tc-analysis{padding:14px 15px;border-top:1px solid var(--border);background:var(--bg2);font-size:12px}
 
 /* ── TABLE desktop ── */
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
-thead th{padding:9px 10px;text-align:right;font-weight:600;color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:.05em;background:var(--bg2);border-bottom:1px solid var(--border)}
+thead th{padding:10px 12px;text-align:right;font-weight:700;color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:.05em;background:var(--bg2);border-bottom:1px solid var(--border)}
 tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--bg2)}
-tbody td{padding:10px;vertical-align:middle}
-.tsym{font-weight:700;font-size:13px}
-.ac2{background:var(--bg2);border-radius:10px;padding:12px;margin-top:6px;font-size:12px}
+tbody td{padding:11px 12px;vertical-align:middle}
+.tsym{font-weight:800;font-size:13px}
+.ac2{background:var(--bg2);border-radius:12px;padding:12px;margin-top:6px;font-size:12px}
 .as3{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.si{padding:5px 8px;background:var(--card);border-radius:6px;margin-bottom:3px;font-size:11px;line-height:1.5}
+.si{padding:6px 10px;background:var(--card);border-radius:8px;margin-bottom:4px;font-size:11px;line-height:1.5}
 
 /* ── CHART ── */
 .cc{position:relative;width:100%;height:200px}
 canvas{display:block}
 
 /* ── MODAL ── */
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px)}
-.md{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:540px;max-height:93vh;overflow-y:auto;box-shadow:0 -6px 32px rgba(0,0,0,.25)}
-.mh{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.mh::before{content:'';display:block;width:36px;height:4px;background:var(--border);border-radius:2px;position:absolute;top:10px;left:50%;transform:translateX(-50%)}
-.mt2{font-size:17px;font-weight:700}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.md{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:560px;max-height:94vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,.2)}
+.md-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 2px}
+.mh{padding:14px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.mt2{font-size:17px;font-weight:800;letter-spacing:-.4px}
 .mb2{padding:20px 22px}
 .mf{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
-.mf .btn{flex:1;justify-content:center;padding:13px}
+.mf .btn{flex:1;justify-content:center;padding:14px;font-size:15px}
 
 /* ── FORM ── */
-.fg{margin-bottom:14px}
-.fl{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px}
-.fi{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:14px;font-family:inherit;transition:border-color .15s;outline:none}
+.fg{margin-bottom:16px}
+.fl{display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px;letter-spacing:.02em}
+.fi{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);font-size:15px;font-family:inherit;transition:border-color .15s;outline:none}
 .fi:focus{border-color:var(--primary)}
 .fi[type=number]{direction:ltr;text-align:right}
-.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dt{display:flex;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
-.dt button{flex:1;padding:11px 8px;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt{display:flex;border:1.5px solid var(--border);border-radius:12px;overflow:hidden}
+.dt button{flex:1;padding:12px 8px;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s}
 .dt button.al{background:var(--gbg);color:var(--green)}
 .dt button.as{background:var(--rbg);color:var(--red)}
-.fh{font-size:10px;color:var(--text3);margin-top:4px}
+.fh{font-size:11px;color:var(--text3);margin-top:5px}
 
 /* ── MISC ── */
-.tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:11px;margin-bottom:14px}
-.tab{flex:1;padding:8px 10px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
-.tab.on{background:var(--card);color:var(--text);box-shadow:var(--sh);font-weight:700}
+.tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:12px;margin-bottom:14px}
+.tab{flex:1;padding:8px 10px;border-radius:9px;border:none;background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.tab.on{background:var(--card);color:var(--text);box-shadow:var(--sh);font-weight:800}
 .es{text-align:center;padding:52px 20px;color:var(--text2)}
-.ei{font-size:42px;margin-bottom:10px}
-.et{font-size:15px;font-weight:700;margin-bottom:5px}
+.ei{font-size:44px;margin-bottom:12px}
+.et{font-size:15px;font-weight:800;margin-bottom:5px}
 .esb{font-size:13px;color:var(--text3)}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.cd2{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--text2);margin-top:10px}
+.cd2{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--text2);margin-top:10px}
 .cr{display:flex;justify-content:space-between;padding:3px 0}
 .cr strong{color:var(--text)}
-.sb2{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:3px}
+.sb2{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px}
 .sf{height:100%;border-radius:3px}
 .ai2{display:flex;align-items:center;gap:10px;padding:13px 15px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);margin-bottom:8px}
-.an2{font-weight:700;font-size:13px}
+.an2{font-weight:800;font-size:13px}
 .ab2{font-size:11px;color:var(--text2);margin-top:2px}
-.dot{width:9px;height:9px;background:var(--green);border-radius:50%}
-select.fs{padding:7px 11px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;outline:none}
+.dot{width:9px;height:9px;background:var(--green);border-radius:50%;flex-shrink:0}
+select.fs{padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;outline:none}
 .tg{display:flex;flex-direction:column;gap:8px}
-.ti{padding:11px 14px;background:var(--bg2);border-radius:11px;border-right:3px solid var(--primary);font-size:12px;line-height:1.6}
+.ti{padding:12px 15px;background:var(--bg2);border-radius:12px;border-right:3px solid var(--primary);font-size:12px;line-height:1.6;font-weight:500}
+.sec-lbl{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;padding-top:4px}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.card,.sc,#hdr,#sb,.tc{transition:background .2s,border-color .2s,box-shadow .2s}
-.section-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;margin-top:4px}
+.card,.sc,.tc,#hdr{transition:background .2s,border-color .2s}
 
-/* ── MOBILE OVERRIDES ── */
+/* ══════════════════════════════
+   MOBILE  ≤768px
+══════════════════════════════ */
 @media(max-width:768px){
-  :root{--sw:0px}
-  #sb{display:none}
-  #main{margin-right:0;padding-bottom:calc(var(--bnav) + env(safe-area-inset-bottom))}
-  #bnav{display:flex}
-  .fab{display:flex;bottom:calc(var(--bnav) + env(safe-area-inset-bottom) + 14px)}
-  #cnt{padding:14px 14px 8px}
-  .sg{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-  .sv{font-size:19px}
+  #sb{display:none!important}
   .desk-only{display:none!important}
-  .mo{align-items:flex-end}
+  #main{margin-right:0!important;width:100%!important}
+  #bnav{display:flex!important}
+  #cnt{padding:14px 14px calc(var(--bn) + env(safe-area-inset-bottom) + 8px) 14px}
+  #hdr{padding:0 15px;height:52px;padding-top:env(safe-area-inset-top)}
+  .sg{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .sv{font-size:20px}
+  .sc{padding:12px 13px}
 }
+
+/* ══════════════════════════════
+   DESKTOP  ≥769px
+══════════════════════════════ */
 @media(min-width:769px){
   .mob-only{display:none!important}
-  .fab{display:none!important}
   #bnav{display:none!important}
-  .mo{align-items:center;padding:16px}
-  .md{border-radius:18px;max-width:480px}
+  .mo{align-items:center;padding:20px}
+  .md{border-radius:20px;max-width:500px}
+  .md-handle{display:none}
 }
 </style>
 </head>
@@ -217,7 +226,7 @@ select.fs{padding:7px 11px;border:1px solid var(--border);border-radius:9px;back
 <!-- SIDEBAR desktop -->
 <div id="sb">
   <div class="sb-logo">
-    <div class="sb-icon">📈</div>
+    <div class="sb-ico">📈</div>
     <div><div class="sb-title">יומן מסחר</div><div class="sb-sub">TradeTracker Pro</div></div>
   </div>
   <nav id="snav"></nav>
@@ -233,9 +242,6 @@ select.fs{padding:7px 11px;border:1px solid var(--border);border-radius:9px;back
 <!-- BOTTOM NAV mobile -->
 <div id="bnav"></div>
 
-<!-- FAB mobile -->
-<button class="fab" onclick="openAdd()" title="עסקה חדשה">+</button>
-
 <!-- MODALS -->
 <div id="mc"></div>
 
@@ -244,12 +250,8 @@ select.fs{padding:7px 11px;border:1px solid var(--border);border-radius:9px;back
 let S={accounts:[],activeId:null,trades:[],dark:false,page:'dashboard',tf:'all',df:'all'};
 
 // ── STORAGE ──
-function load(){
-  try{const d=localStorage.getItem('tt3');if(d)Object.assign(S,JSON.parse(d))}catch(e){}
-}
-function save(){
-  localStorage.setItem('tt3',JSON.stringify({accounts:S.accounts,activeId:S.activeId,trades:S.trades,dark:S.dark}));
-}
+function load(){try{const d=localStorage.getItem('tt3');if(d)Object.assign(S,JSON.parse(d))}catch(e){}}
+function save(){localStorage.setItem('tt3',JSON.stringify({accounts:S.accounts,activeId:S.activeId,trades:S.trades,dark:S.dark}))}
 
 // ── UTILS ──
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -260,17 +262,17 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function mob(){return window.innerWidth<=768}
 
 // ── CALC ──
-function calcPnL(dir,entry,exit,shares){return dir==='long'?(exit-entry)*shares:(entry-exit)*shares}
-function calcRisk(entry,stop,shares){return Math.abs(entry-stop)*shares}
-function calcRR(entry,stop,limit){
-  if(!limit||!stop||!entry)return null;
-  const r=Math.abs(entry-stop);return r?Math.abs(limit-entry)/r:null;
+function calcPnL(dir,ep,xp,sh){return dir==='long'?(xp-ep)*sh:(ep-xp)*sh}
+function calcRisk(ep,sp,sh){return Math.abs(ep-sp)*sh}
+function calcRR(ep,sp,lp){
+  if(!lp||!sp||!ep)return null;
+  const r=Math.abs(ep-sp);return r?Math.abs(lp-ep)/r:null;
 }
 function rlevel(pct){
   if(pct<1)return{label:'נמוך',cls:'bg3'};
   if(pct<2)return{label:'בינוני',cls:'by'};
   if(pct<5)return{label:'גבוה',cls:'bo'};
-  return{label:'גבוה מאוד',cls:'br'};
+  return{label:'גבוה מאוד',cls:'br2'};
 }
 function getBal(aid){
   const a=S.accounts.find(x=>x.id===aid);if(!a)return 0;
@@ -309,34 +311,29 @@ function tradeScore(t){
 function getSugg(t){
   const s=[];
   if(t.rp>5)s.push('⚠️ סיכון גבוה מאוד — שאוף ל-2% מקסימום לעסקה.');
-  else if(t.rp>2)s.push('📊 סיכון מעל 2% — שקול להקטין גודל פוזיציה.');
-  if(t.rr&&t.rr<1)s.push('🎯 R/R מתחת ל-1 — שפר יעד רווח או קרב סטופ.');
-  if(t.pnl<0)s.push('📉 עסקה הפסדית — בדוק אם ניתוח הכניסה היה תקין.');
+  else if(t.rp>2)s.push('📊 סיכון מעל 2% — שקול להקטין פוזיציה.');
+  if(t.rr&&t.rr<1)s.push('🎯 R/R מתחת ל-1 — שפר יעד או קרב סטופ.');
+  if(t.pnl<0)s.push('📉 עסקה הפסדית — בדוק את ניתוח הכניסה.');
   else if(t.pnl>0)s.push('✅ עסקה רווחית — שמור את האסטרטגיה הזו.');
   if(!s.length)s.push('👍 ניהול עסקה תקין. המשך כך!');
   return s;
 }
 function getTips(aid){
   const closed=S.trades.filter(t=>t.aid===aid&&t.status==='closed');
-  if(!closed.length)return[
-    'ברוך הבא! הוסף עסקאות כדי לקבל טיפים אישיים.',
-    'תמיד קבע סטופ לוס לפני כניסה לכל עסקה.',
-    'אל תסכן יותר מ-2% מהתיק בעסקה אחת.',
-    'תעד כל עסקה — יומן מסחר הוא כלי השיפור הטוב ביותר.'
-  ];
+  if(!closed.length)return['ברוך הבא! הוסף עסקאות לקבלת טיפים אישיים.','תמיד קבע סטופ לוס לפני כל כניסה.','אל תסכן יותר מ-2% מהתיק בעסקה אחת.','תיעוד עסקאות הוא כלי השיפור הטוב ביותר.'];
   const wr=closed.length?(closed.filter(t=>t.pnl>0).length/closed.length)*100:0;
   const ar=closed.filter(t=>t.rp).reduce((s,t)=>s+t.rp,0)/(closed.filter(t=>t.rp).length||1);
   const rrs=closed.filter(t=>t.rr);const avgR=rrs.length?rrs.reduce((s,t)=>s+t.rr,0)/rrs.length:0;
   const res=[];
-  if(wr<40)res.push(`📊 אחוז הצלחה ${fn(wr,1)}% — שפר נקודות כניסה וחכה לסטאפ ברור.`);
+  if(wr<40)res.push(`📊 אחוז הצלחה ${fn(wr,1)}% — שפר נקודות כניסה.`);
   else if(wr>65)res.push(`🏆 אחוז הצלחה מעולה ${fn(wr,1)}%! שמור על הדיסציפלינה.`);
-  else res.push(`👍 אחוז הצלחה סביר ${fn(wr,1)}%. שאוף ל-50%+ עם R/R גבוה.`);
-  if(ar>3)res.push(`⚠️ סיכון ממוצע גבוה (${fn(ar,1)}%). הורד ל-1–2% לעסקה.`);
-  else if(ar>0)res.push(`✅ ניהול סיכון סביר — ממוצע ${fn(ar,1)}%. שמור על זה.`);
+  else res.push(`👍 אחוז הצלחה סביר ${fn(wr,1)}%. שאוף ל-50%+.`);
+  if(ar>3)res.push(`⚠️ סיכון ממוצע גבוה (${fn(ar,1)}%). הורד ל-1–2%.`);
+  else if(ar>0)res.push(`✅ ניהול סיכון סביר — ממוצע ${fn(ar,1)}%.`);
   if(avgR>0&&avgR<1.5)res.push(`🎯 R/R ממוצע ${fn(avgR,2)} — שאוף ל-2:1.`);
-  else if(avgR>=2)res.push(`🚀 R/R ממוצע מצוין ${fn(avgR,2)}! המספרים בצדך.`);
-  res.push('📅 בדוק ביצועים לפי ימי שבוע — ייתכן שיש ימים עדיפים.');
-  res.push('🧘 שמור על קור רוח. אחרי הפסד, עצור לפחות 30 דקות.');
+  else if(avgR>=2)res.push(`🚀 R/R ממוצע מצוין ${fn(avgR,2)}!`);
+  res.push('📅 בדוק ביצועים לפי ימי שבוע.');
+  res.push('🧘 אחרי הפסד — עצור 30 דקות לפני העסקה הבאה.');
   return res.slice(0,5);
 }
 
@@ -350,12 +347,14 @@ function drawChart(id,data){
     cv.style.width=rect.width+'px';cv.style.height=rect.height+'px';
     const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
     const W=rect.width,H=rect.height;
-    const p={t:14,r:12,b:28,l:62};
+    const p={t:12,r:12,b:26,l:62};
     const pw=W-p.l-p.r,ph=H-p.t-p.b;
     const bals=data.map(d=>d.balance);
     const mn=Math.min(...bals),mx=Math.max(...bals);const rng=mx-mn||1;
     const dk=document.documentElement.dataset.dark==='true';
-    const tc=dk?'#4b5e75':'#94a3b8';const gc=dk?'#1a2235':'#f1f5f9';
+    const tc=dk?'#4b5e75':'#94a3b8';const gc=dk?'#161b22':'#f1f5f9';
+    const up=data[data.length-1].balance>=data[0].balance;
+    const lc=up?'#16a34a':'#dc2626';
     ctx.clearRect(0,0,W,H);
     for(let i=0;i<=4;i++){
       const y=p.t+(i/4)*ph;
@@ -366,57 +365,46 @@ function drawChart(id,data){
     }
     const xs=i=>p.l+(i/(data.length-1))*pw;
     const ys=v=>p.t+ph-((v-mn)/rng)*ph;
-    const isUp=data[data.length-1].balance>=data[0].balance;
-    const lineColor=isUp?'#22c55e':'#ef4444';
     const gr=ctx.createLinearGradient(0,p.t,0,p.t+ph);
-    gr.addColorStop(0,isUp?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)');
-    gr.addColorStop(1,isUp?'rgba(34,197,94,0)':'rgba(239,68,68,0)');
+    gr.addColorStop(0,up?'rgba(22,163,74,.2)':'rgba(220,38,38,.2)');
+    gr.addColorStop(1,up?'rgba(22,163,74,0)':'rgba(220,38,38,0)');
     ctx.beginPath();ctx.moveTo(xs(0),ys(data[0].balance));
     for(let i=1;i<data.length;i++)ctx.lineTo(xs(i),ys(data[i].balance));
     ctx.lineTo(xs(data.length-1),p.t+ph);ctx.lineTo(xs(0),p.t+ph);
     ctx.closePath();ctx.fillStyle=gr;ctx.fill();
     ctx.beginPath();ctx.moveTo(xs(0),ys(data[0].balance));
     for(let i=1;i<data.length;i++)ctx.lineTo(xs(i),ys(data[i].balance));
-    ctx.strokeStyle=lineColor;ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+    ctx.strokeStyle=lc;ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
     for(let i=0;i<data.length;i++){
       ctx.beginPath();ctx.arc(xs(i),ys(data[i].balance),3.5,0,Math.PI*2);
-      ctx.fillStyle=lineColor;ctx.fill();
-      ctx.strokeStyle=dk?'#1a2235':'#fff';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle=lc;ctx.fill();
+      ctx.strokeStyle=dk?'#1c2433':'#fff';ctx.lineWidth=2;ctx.stroke();
     }
     ctx.fillStyle=tc;ctx.font='10px system-ui';ctx.textAlign='center';
     const st=Math.max(1,Math.floor(data.length/5));
-    for(let i=0;i<data.length;i+=st)ctx.fillText(data[i].date.slice(5),xs(i),H-6);
+    for(let i=0;i<data.length;i+=st)ctx.fillText(data[i].date.slice(5),xs(i),H-5);
   });
 }
 
 // ── SIDEBAR ──
 function renderSB(){
-  const pages=[
-    {id:'dashboard',ic:'🏠',lbl:'לוח בקרה'},
-    {id:'trades',ic:'📋',lbl:'עסקאות'},
-    {id:'analytics',ic:'📈',lbl:'ניתוח'},
-    {id:'settings',ic:'⚙️',lbl:'הגדרות'},
-  ];
-  document.getElementById('snav').innerHTML=pages.map(p=>`
-    <div class="ni ${S.page===p.id?'on':''}" onclick="go('${p.id}')">
-      <span class="ic">${p.ic}</span>${esc(p.lbl)}</div>`).join('');
+  const pages=[{id:'dashboard',ic:'🏠',lbl:'לוח בקרה'},{id:'trades',ic:'📋',lbl:'עסקאות'},{id:'analytics',ic:'📈',lbl:'ניתוח'},{id:'settings',ic:'⚙️',lbl:'הגדרות'}];
+  document.getElementById('snav').innerHTML=pages.map(p=>`<div class="ni ${S.page===p.id?'on':''}" onclick="go('${p.id}')"><span class="ic">${p.ic}</span>${esc(p.lbl)}</div>`).join('');
   const sel=document.getElementById('acc-sel');
   if(sel)sel.innerHTML=S.accounts.map(a=>`<option value="${a.id}"${a.id===S.activeId?' selected':''}>${esc(a.name)}</option>`).join('');
 }
 
 // ── BOTTOM NAV ──
 function renderBNav(){
-  const pages=[
-    {id:'dashboard',ic:'🏠',lbl:'בית'},
-    {id:'trades',ic:'📋',lbl:'עסקאות'},
-    {id:'analytics',ic:'📈',lbl:'ניתוח'},
-    {id:'settings',ic:'⚙️',lbl:'הגדרות'},
-  ];
-  document.getElementById('bnav').innerHTML=pages.map(p=>`
-    <div class="bni ${S.page===p.id?'on':''}" onclick="go('${p.id}')">
-      <div class="bni-ic">${p.ic}</div>
-      <div class="bni-lbl">${p.lbl}</div>
-    </div>`).join('');
+  const bn=document.getElementById('bnav');if(!bn)return;
+  const pages=[{id:'dashboard',ic:'🏠',lbl:'בית'},{id:'trades',ic:'📋',lbl:'עסקאות'},{id:'analytics',ic:'📈',lbl:'ניתוח'},{id:'settings',ic:'⚙️',lbl:'הגדרות'}];
+  // 5-item layout: bית | עסקאות | [+] | ניתוח | הגדרות
+  bn.innerHTML=`
+    <div class="bni ${S.page==='dashboard'?'on':''}" onclick="go('dashboard')"><div class="bni-ic">🏠</div><span>בית</span></div>
+    <div class="bni ${S.page==='trades'?'on':''}" onclick="go('trades')"><div class="bni-ic">📋</div><span>עסקאות</span></div>
+    <div class="bni-add" onclick="openAdd()"><div class="bni-add-circle">+</div></div>
+    <div class="bni ${S.page==='analytics'?'on':''}" onclick="go('analytics')"><div class="bni-ic">📈</div><span>ניתוח</span></div>
+    <div class="bni ${S.page==='settings'?'on':''}" onclick="go('settings')"><div class="bni-ic">⚙️</div><span>הגדרות</span></div>`;
 }
 
 // ── HEADER ──
@@ -424,13 +412,13 @@ function renderHDR(){
   const titles={dashboard:'לוח בקרה',trades:'עסקאות',analytics:'ניתוח',settings:'הגדרות'};
   const b=S.activeId?getBal(S.activeId):0;
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
-  const accSel=S.accounts.length>1
-    ?`<select class="fs" onchange="switchAcc(this.value)" style="font-size:12px">${S.accounts.map(ac=>`<option value="${ac.id}"${ac.id===S.activeId?' selected':''}>${esc(ac.name)}</option>`).join('')}</select>`
-    :`<div class="hdr-acc"><span class="hdr-acc-lbl">${a?esc(a.name):'חשבון'}</span><span class="hdr-acc-val">${c} ${fn(b)}</span></div>`;
+  const accPart=S.accounts.length>1
+    ?`<select class="fs" onchange="switchAcc(this.value)" style="font-size:12px;max-width:100px">${S.accounts.map(ac=>`<option value="${ac.id}"${ac.id===S.activeId?' selected':''}>${esc(ac.name)}</option>`).join('')}</select>`
+    :`<div class="hdr-bal desk-only"><div class="hdr-bal-l">יתרה</div><div class="hdr-bal-v">${c} ${fn(b)}</div></div>`;
   document.getElementById('hdr').innerHTML=`
     <div class="hdr-title">${titles[S.page]||''}</div>
-    ${accSel}
-    <button class="bic" onclick="toggleDark()" title="מצב לילה">${S.dark?'☀️':'🌙'}</button>
+    ${accPart}
+    <button class="ico-btn" onclick="toggleDark()">${S.dark?'☀️':'🌙'}</button>
     <button class="btn bp sm desk-only" onclick="openAdd()">+ עסקה</button>`;
 }
 
@@ -438,12 +426,12 @@ function renderHDR(){
 function renderDash(){
   if(!S.activeId){
     document.getElementById('cnt').innerHTML=`
-      <div style="display:flex;align-items:center;justify-content:center;min-height:70vh">
-        <div style="text-align:center;max-width:340px;padding:28px">
-          <div style="font-size:60px;margin-bottom:16px">📈</div>
-          <div style="font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-.4px">ברוך הבא!</div>
-          <div style="color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.7">לפני שמתחילים — צור את החשבון הראשון שלך עם שם התיק והיתרה ההתחלתית</div>
-          <button class="btn bp" style="font-size:15px;padding:14px 32px;border-radius:12px;width:100%" onclick="openAddAcc()">+ צור חשבון ראשון</button>
+      <div style="display:flex;align-items:center;justify-content:center;min-height:72vh">
+        <div style="text-align:center;max-width:320px;padding:24px">
+          <div style="font-size:64px;margin-bottom:18px">📈</div>
+          <div style="font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px">ברוך הבא!</div>
+          <div style="color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.7">צור את החשבון הראשון שלך עם שם התיק והיתרה ההתחלתית</div>
+          <button class="btn bp" style="font-size:15px;padding:15px 32px;border-radius:14px;width:100%" onclick="openAddAcc()">+ צור חשבון ראשון</button>
         </div>
       </div>`;
     return;
@@ -452,86 +440,71 @@ function renderDash(){
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
   const cv=getCurve(S.activeId);const tp=getTips(S.activeId);
   const recent=[...S.trades.filter(t=>t.aid===S.activeId)].sort((a,b)=>b.od>a.od?1:-1).slice(0,4);
-  const pctColor=st.pct>=0?'rgba(255,255,255,.9)':'rgba(255,200,200,.9)';
 
   document.getElementById('cnt').innerHTML=`
-    <!-- Hero Card mobile -->
+    <!-- HERO mobile -->
     <div class="hero mob-only">
-      <div class="hero-lbl">יתרה נוכחית</div>
+      <div class="hero-acct">${esc(a.name)}</div>
+      <div class="hero-lbl">יתרת תיק</div>
       <div class="hero-val">${c} ${fn(st.b)}</div>
+      <div class="hero-pnl" style="color:${st.tot>=0?'#86efac':'#fca5a5'}">${st.tot>=0?'▲':' ▼'} ${c} ${fn(Math.abs(st.tot))} (${fn(Math.abs(st.pct),2)}%)</div>
       <div class="hero-row">
-        <div class="hero-stat">
-          <div class="hero-stat-v" style="color:${st.tot>=0?'#86efac':'#fca5a5'}">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div>
-          <div class="hero-stat-l">רווח/הפסד</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-v">${fn(st.wr,1)}%</div>
-          <div class="hero-stat-l">אחוז הצלחה</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-v">${st.avgRR?fn(st.avgRR,2):'-'}</div>
-          <div class="hero-stat-l">R/R ממוצע</div>
-        </div>
+        <div class="hero-cell"><div class="hero-cv">${fn(st.wr,0)}%</div><div class="hero-cl">הצלחה</div></div>
+        <div class="hero-cell"><div class="hero-cv">${st.open.length}</div><div class="hero-cl">פתוחות</div></div>
+        <div class="hero-cell"><div class="hero-cv">${st.avgRR?fn(st.avgRR,1):'-'}</div><div class="hero-cl">R/R</div></div>
       </div>
     </div>
 
-    <!-- Stats grid desktop -->
+    <!-- STATS desktop -->
     <div class="sg desk-only">
-      <div class="sc b"><div class="sl">יתרה נוכחית</div><div class="sv">${c} ${fn(st.b)}</div><div class="ss">קרן: ${c} ${fn(a?.init||0)}</div></div>
-      <div class="sc ${st.tot>=0?'g':'r'}"><div class="sl">רווח/הפסד כולל</div><div class="sv">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div><div class="ss">${st.pct>=0?'+':''}${fn(st.pct,2)}% מהקרן</div></div>
-      <div class="sc"><div class="sl">אחוז הצלחה</div><div class="sv">${fn(st.wr,1)}%</div><div class="ss">${st.wins.length} רווח / ${st.losses.length} הפסד</div></div>
-      <div class="sc"><div class="sl">R/R ממוצע</div><div class="sv">${st.avgRR?fn(st.avgRR,2):'-'}</div><div class="ss">יחס סיכון/תגמול</div></div>
+      <div class="sc b"><div class="sl">יתרה</div><div class="sv">${c} ${fn(st.b)}</div><div class="ss">קרן: ${c} ${fn(a?.init||0)}</div></div>
+      <div class="sc ${st.tot>=0?'g':'r'}"><div class="sl">רווח/הפסד</div><div class="sv">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div><div class="ss">${fn(st.pct,2)}%</div></div>
+      <div class="sc"><div class="sl">אחוז הצלחה</div><div class="sv">${fn(st.wr,1)}%</div><div class="ss">${st.wins.length}/${st.closed.length}</div></div>
+      <div class="sc"><div class="sl">R/R ממוצע</div><div class="sv">${st.avgRR?fn(st.avgRR,2):'-'}</div></div>
     </div>
-
-    <!-- Mini stats mobile -->
-    <div class="sg mob-only" style="margin-bottom:14px">
-      <div class="sc"><div class="sl">פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
-      <div class="sc"><div class="sl">סגורות</div><div class="sv">${st.closed.length}</div></div>
-      <div class="sc g"><div class="sl">הכי טוב</div><div class="sv">+${fn(st.best)}</div></div>
-      <div class="sc r"><div class="sl">הכי גרוע</div><div class="sv">${fn(st.worst)}</div></div>
-    </div>
-
-    <!-- Desktop second row -->
     <div class="sg desk-only" style="margin-top:-4px">
       <div class="sc"><div class="sl">פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
       <div class="sc"><div class="sl">סגורות</div><div class="sv">${st.closed.length}</div></div>
-      <div class="sc g"><div class="sl">עסקה טובה ביותר</div><div class="sv">+${c} ${fn(st.best)}</div></div>
-      <div class="sc r"><div class="sl">עסקה גרועה ביותר</div><div class="sv">${c} ${fn(st.worst)}</div></div>
+      <div class="sc g"><div class="sl">הכי טוב</div><div class="sv">+${c} ${fn(st.best)}</div></div>
+      <div class="sc r"><div class="sl">הכי גרוע</div><div class="sv">${c} ${fn(st.worst)}</div></div>
     </div>
 
-    <!-- Equity curve -->
+    <!-- MINI STATS mobile -->
+    <div class="sg mob-only">
+      <div class="sc g"><div class="sl">הכי טוב</div><div class="sv">+${fn(st.best)}</div></div>
+      <div class="sc r"><div class="sl">הכי גרוע</div><div class="sv">${fn(st.worst)}</div></div>
+      <div class="sc"><div class="sl">סגורות</div><div class="sv">${st.closed.length}</div></div>
+      <div class="sc"><div class="sl">פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
+    </div>
+
+    <!-- CHART -->
     <div class="card" style="margin-bottom:14px">
-      <div class="ch"><span class="ct">📈 עקומת הון</span>
-        <span style="font-size:11px;color:var(--text2)">${cv.length-1} עסקאות</span></div>
-      <div class="cb" style="padding:14px">
-        <div class="cc">
-          <canvas id="ch1"></canvas>
-          ${cv.length<2?'<div class="es" style="padding:18px 0"><div class="esb">סגור עסקאות כדי לראות גרף</div></div>':''}
-        </div>
-      </div>
+      <div class="ch"><span class="ct">📈 עקומת הון</span><span style="font-size:11px;color:var(--text2)">${cv.length-1} עסקאות</span></div>
+      <div class="cb" style="padding:14px"><div class="cc">
+        <canvas id="ch1"></canvas>
+        ${cv.length<2?'<div class="es" style="padding:18px 0;min-height:auto"><div class="esb">סגור עסקאות כדי לראות גרף</div></div>':''}
+      </div></div>
     </div>
 
-    <!-- Tips -->
+    <!-- TIPS -->
     <div class="card" style="margin-bottom:14px">
       <div class="ch"><span class="ct">💡 טיפים אישיים</span></div>
       <div class="cb" style="padding:12px 14px"><div class="tg">${tp.map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
     </div>
 
-    <!-- Recent trades -->
-    <div class="section-title">עסקאות אחרונות</div>
+    <!-- RECENT -->
+    <div class="sec-lbl">עסקאות אחרונות</div>
     ${mob()
-      ? (recent.length ? recent.map(t=>tradeCard(t,c,true)).join('') : '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">אין עסקאות</div></div>')
+      ? (recent.length?recent.map(t=>tradeCard(t,a?.currency||'₪',true)).join('')+'<button class="btn bs" style="width:100%;justify-content:center;margin-top:4px" onclick="go(\'trades\')">הצג הכל ←</button>'
+        :'<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">אין עסקאות עדיין</div><div class="esb">לחץ + כדי להוסיף עסקה</div></div>')
       : `<div class="card"><div class="ch"><span class="ct">עסקאות אחרונות</span><button class="btn bs sm" onclick="go('trades')">הצג הכל</button></div><div class="tw">${tradeTable(recent,true)}</div></div>`
-    }
-    ${mob()&&recent.length?`<button class="btn bs" style="width:100%;justify-content:center;margin-top:4px" onclick="go('trades')">הצג הכל →</button>`:''}
-  `;
+    }`;
   if(cv.length>=2)drawChart('ch1',cv);
 }
 
-// ── TRADES PAGE ──
+// ── TRADES ──
 function renderTrades(){
+  if(!S.activeId){document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">📋</div><div class="et">אין חשבון פעיל</div></div>';return}
   const all=S.trades.filter(t=>t.aid===S.activeId);
   let filt=all;
   if(S.tf==='open')filt=filt.filter(t=>t.status==='open');
@@ -540,7 +513,6 @@ function renderTrades(){
   if(S.df==='short')filt=filt.filter(t=>t.dir==='short');
   filt=[...filt].sort((a,b)=>b.od>a.od?1:-1);
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
-
   document.getElementById('cnt').innerHTML=`
     <div class="tabs">
       <button class="tab ${S.tf==='all'?'on':''}" onclick="setTF('all')">הכל (${all.length})</button>
@@ -556,76 +528,74 @@ function renderTrades(){
       <button class="btn bp sm desk-only" onclick="openAdd()" style="margin-right:auto">+ עסקה חדשה</button>
     </div>
     ${mob()
-      ? (filt.length ? filt.map(t=>tradeCard(t,c,false)).join('') : '<div class="es"><div class="ei">📋</div><div class="et">אין עסקאות</div><div class="esb">לחץ + כדי להוסיף</div></div>')
+      ? (filt.length?filt.map(t=>tradeCard(t,c,false)).join(''):'<div class="es"><div class="ei">📋</div><div class="et">אין עסקאות</div><div class="esb">לחץ + כדי להוסיף</div></div>')
       : `<div class="card"><div class="tw">${tradeTable(filt,false)}</div></div>`
-    }
-  `;
+    }`;
 }
 function setTF(f){S.tf=f;renderTrades()}
 function setDF(f){S.df=f;renderTrades()}
 
 // ── TRADE CARD mobile ──
 function tradeCard(t,c,compact){
-  const pnlColor=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
-  const dirBadge=t.dir==='long'?'<span class="badge bg3">▲ Long</span>':'<span class="badge br">▼ Short</span>';
-  const statBadge=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
-  const pnlStr=t.pnl!=null?`<span style="color:${pnlColor};font-weight:800">${t.pnl>=0?'+':''}${c} ${fn(t.pnl)}</span>`:'';
+  const pc=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
+  const db=t.dir==='long'?'<span class="badge bg3">▲ Long</span>':'<span class="badge br2">▼ Short</span>';
+  const sb=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
+  const pnlStr=t.pnl!=null?`${t.pnl>=0?'+':''}${c} ${fn(t.pnl)}`:'';
   const sc=t.status==='closed'?tradeScore(t):null;
-  const scColor=sc!=null?(sc>=70?'var(--green)':sc>=40?'var(--yellow)':'var(--red)'):'';
+  const scc=sc!=null?(sc>=70?'var(--green)':sc>=40?'var(--yellow)':'var(--red)'):'';
 
-  let body=`
-    <div class="tc-body">
-      <div class="tc-kv"><span class="tc-k">כניסה</span><span class="tc-v">${fn(t.ep)}</span></div>
-      <div class="tc-kv"><span class="tc-k">סטופ</span><span class="tc-v" style="color:var(--red)">${fn(t.sp)}</span></div>`;
-  if(t.xp!=null){
-    body+=`<div class="tc-kv"><span class="tc-k">יציאה</span><span class="tc-v" style="color:var(--green)">${fn(t.xp)}</span></div>`;
-  } else if(t.lp){
-    body+=`<div class="tc-kv"><span class="tc-k">יעד</span><span class="tc-v" style="color:var(--primary)">${fn(t.lp)}</span></div>`;
-  }
-  body+=`<div class="tc-kv"><span class="tc-k">כמות</span><span class="tc-v">${fn(t.shares,0)}</span></div>`;
-  if(t.rr)body+=`<div class="tc-kv"><span class="tc-k">R/R</span><span class="tc-v">${fn(t.rr,2)}</span></div>`;
-  if(t.rp!=null){const rl=rlevel(t.rp);body+=`<div class="tc-kv"><span class="tc-k">סיכון</span><span class="tc-v"><span class="badge ${rl.cls}" style="font-size:10px">${fn(t.rp,2)}%</span></span></div>`;}
-  body+='</div>';
+  const cells3=t.status==='closed'
+    ?`<div class="tc-grid tc-grid-3">
+        <div class="tc-cell"><div class="tc-cl">כניסה</div><div class="tc-cv">${fn(t.ep)}</div></div>
+        <div class="tc-cell"><div class="tc-cl">סטופ</div><div class="tc-cv" style="color:var(--red)">${fn(t.sp)}</div></div>
+        <div class="tc-cell"><div class="tc-cl">יציאה</div><div class="tc-cv" style="color:var(--green)">${fn(t.xp)}</div></div>
+      </div>`
+    :`<div class="tc-grid tc-grid-3">
+        <div class="tc-cell"><div class="tc-cl">כניסה</div><div class="tc-cv">${fn(t.ep)}</div></div>
+        <div class="tc-cell"><div class="tc-cl">סטופ</div><div class="tc-cv" style="color:var(--red)">${fn(t.sp)}</div></div>
+        <div class="tc-cell"><div class="tc-cl">${t.lp?'יעד':'כמות'}</div><div class="tc-cv">${t.lp?fn(t.lp):fn(t.shares,0)}</div></div>
+      </div>`;
+
+  const row2parts=[];
+  if(t.rr)row2parts.push(`<div class="tc-cell"><div class="tc-cl">R/R</div><div class="tc-cv">${fn(t.rr,2)}</div></div>`);
+  if(t.rp!=null){const rl=rlevel(t.rp);row2parts.push(`<div class="tc-cell"><div class="tc-cl">סיכון</div><div class="tc-cv"><span class="badge ${rl.cls}" style="font-size:10px">${fn(t.rp,2)}%</span></div></div>`);}
+  if(!t.lp&&t.status==='open')row2parts.push(`<div class="tc-cell"><div class="tc-cl">כמות</div><div class="tc-cv">${fn(t.shares,0)}</div></div>`);
+  const row2=row2parts.length?`<div class="tc-grid" style="grid-template-columns:repeat(${row2parts.length},1fr)">${row2parts.join('')}</div>`:'';
 
   let analysis='';
-  if(!compact&&t.status==='closed'&&sc!=null){
+  if(!compact&&sc!=null){
     const sg=getSugg(t);
     analysis=`<div class="tc-analysis">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
         <div style="flex:1">
-          <div style="font-size:10px;color:var(--text2);margin-bottom:3px">ציון ביצועים</div>
-          <div style="font-weight:800;font-size:20px;color:${scColor}">${sc}<span style="font-size:12px;font-weight:500;color:var(--text2)">/100</span></div>
-          <div class="tc-score-bar"><div class="tc-score-fill" style="width:${sc}%;background:${scColor}"></div></div>
+          <div style="font-size:10px;color:var(--text2);font-weight:700;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em">ציון עסקה</div>
+          <div style="font-size:22px;font-weight:800;color:${scc};letter-spacing:-.5px">${sc}<span style="font-size:13px;font-weight:500;color:var(--text2)">/100</span></div>
+          <div class="sb2"><div class="sf" style="width:${sc}%;background:${scc}"></div></div>
         </div>
-        ${t.pp!=null?`<div style="text-align:center;background:var(--card);border-radius:10px;padding:8px 12px;border:1px solid var(--border)">
-          <div style="font-size:18px;font-weight:800;color:${pnlColor}">${t.pp>=0?'+':''}${fn(t.pp,1)}%</div>
-          <div style="font-size:10px;color:var(--text2)">תשואה</div>
+        ${t.pp!=null?`<div style="background:var(--card);border-radius:12px;padding:10px 14px;border:1px solid var(--border);text-align:center">
+          <div style="font-size:20px;font-weight:800;color:${pc};letter-spacing:-.5px">${t.pp>=0?'+':''}${fn(t.pp,1)}%</div>
+          <div style="font-size:10px;color:var(--text2);font-weight:600">תשואה</div>
         </div>`:''}
       </div>
-      <div style="font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px">המלצות:</div>
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em">המלצות</div>
       ${sg.map(s=>`<div class="si">${esc(s)}</div>`).join('')}
     </div>`;
   }
 
-  let actions='';
-  if(!compact){
-    actions=`<div class="tc-actions">
-      ${t.status==='open'?`<button class="btn bg2 sm" style="flex:1;justify-content:center" onclick="openClose('${t.id}')">✓ סגור עסקה</button>`:''}
-      <button class="btn bd sm" ${t.status==='open'?'style="flex:none"':'style="flex:1;justify-content:center"'} onclick="delTrade('${t.id}')">🗑 מחק</button>
-    </div>`;
-  }
+  const actions=compact?'':`<div class="tc-actions">
+    ${t.status==='open'?`<button class="btn bg2 sm" style="flex:1;justify-content:center" onclick="openClose('${t.id}')">✓ סגור עסקה</button>`:''}
+    <button class="btn bd sm" ${t.status==='open'?'':'style="flex:1;justify-content:center"'} onclick="delTrade('${t.id}')">🗑 מחק</button>
+  </div>`;
 
   return`<div class="tc">
     <div class="tc-head">
       <div class="tc-sym">${esc(t.symbol)}</div>
-      ${dirBadge}
-      ${statBadge}
-      <div class="tc-pnl" style="color:${pnlColor}">${pnlStr}</div>
+      ${db}${sb}
+      <div class="tc-pnl" style="color:${pc}">${pnlStr}</div>
     </div>
-    <div style="padding:0 15px 4px;font-size:11px;color:var(--text3)">${fd(t.od)}${t.cd?' — '+fd(t.cd):''}</div>
-    ${body}
-    ${analysis}
-    ${actions}
+    <div class="tc-date">${fd(t.od)}${t.cd?' → '+fd(t.cd):''}</div>
+    ${cells3}${row2}
+    ${analysis}${actions}
   </div>`;
 }
 
@@ -638,61 +608,43 @@ function tradeTable(trades,compact){
     <th>כמות</th><th>רווח/הפסד</th><th>סיכון%</th><th>R/R</th>
     <th>סטטוס</th><th>תאריך</th>${compact?'':'<th>פעולות</th>'}
   </tr></thead><tbody>
-  ${trades.map(t=>tradeRowDesk(t,c,compact)).join('')}
+  ${trades.map(t=>{
+    const pc=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
+    const sb=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
+    const db=t.dir==='long'?'<span class="badge bg3">Long ▲</span>':'<span class="badge br2">Short ▼</span>';
+    const pstr=t.pnl!=null?`<span style="color:${pc};font-weight:700">${t.pnl>=0?'+':''}${c} ${fn(t.pnl)}</span>`:'—';
+    const rbdg=t.rp!=null?(()=>{const rl=rlevel(t.rp);return`<span class="badge ${rl.cls}">${fn(t.rp,2)}%`})():'—';
+    const acts=compact?'':`<td>${t.status==='open'?`<button class="btn bg2 sm" onclick="openClose('${t.id}')">סגור</button> `:''}<button class="btn bd sm" onclick="delTrade('${t.id}')">מחק</button></td>`;
+    let arow='';
+    if(!compact&&t.status==='closed'){
+      const sc=tradeScore(t);const scc=sc>=70?'var(--green)':sc>=40?'var(--yellow)':'var(--red)';
+      const sg=getSugg(t);const rl=t.rp!=null?rlevel(t.rp):null;
+      arow=`<tr style="background:var(--bg2)"><td colspan="12" style="padding:0 10px 10px">
+        <div class="ac2">
+          <div style="font-weight:700;margin-bottom:8px;font-size:12px">📊 ניתוח עסקה</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
+            <div><div style="font-size:10px;color:var(--text2)">ציון</div><div style="font-weight:800;font-size:18px;color:${scc}">${sc}/100</div><div class="sb2"><div class="sf" style="width:${sc}%;background:${scc}"></div></div></div>
+            <div><div style="font-size:10px;color:var(--text2)">סיכון</div><div style="font-weight:700">${c} ${fn(t.ra||0)}</div><div style="font-size:10px;color:var(--text2)">${fn(t.rp||0,2)}%</div></div>
+            <div><div style="font-size:10px;color:var(--text2)">רמה</div>${rl?`<span class="badge ${rl.cls}">${rl.label}</span>`:'—'}</div>
+            <div><div style="font-size:10px;color:var(--text2)">R/R</div><div style="font-weight:700">${t.rr?fn(t.rr,2):'—'}</div></div>
+          </div>
+          <div class="as3"><div style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:4px">המלצות:</div>${sg.map(s=>`<div class="si">${esc(s)}</div>`).join('')}</div>
+        </div></td></tr>`;
+    }
+    return`<tr><td class="tsym">${esc(t.symbol)}</td><td>${db}</td><td>${fn(t.ep)}</td><td style="color:var(--red)">${fn(t.sp)}</td>
+      <td>${t.xp!=null?fn(t.xp):t.lp?`<span style="color:var(--text2)">${fn(t.lp)}</span>`:'—'}</td>
+      <td>${fn(t.shares,0)}</td><td>${pstr}${t.pp!=null?`<br><span style="font-size:10px;color:var(--text2)">${t.pp>=0?'+':''}${fn(t.pp,2)}%</span>`:''}</td>
+      <td>${rbdg}</td><td>${t.rr?fn(t.rr,2):'—'}</td><td>${sb}</td>
+      <td style="white-space:nowrap;font-size:11px">${fd(t.od)}${t.cd?`<br><span style="color:var(--text3)">${fd(t.cd)}</span>`:''}</td>${acts}</tr>${arow}`;
+  }).join('')}
   </tbody></table>`;
-}
-function tradeRowDesk(t,c,compact){
-  const pc=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
-  const sb=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
-  const db=t.dir==='long'?'<span class="badge bg3">Long ▲</span>':'<span class="badge br">Short ▼</span>';
-  const pstr=t.pnl!=null?`<span style="color:${pc};font-weight:700">${t.pnl>=0?'+':''}${c} ${fn(t.pnl)}</span>`:'—';
-  const rbdg=t.rp!=null?(()=>{const rl=rlevel(t.rp);return`<span class="badge ${rl.cls}">${fn(t.rp,2)}%</span>`})():'—';
-  const acts=compact?'':
-    `<td>${t.status==='open'?`<button class="btn bg2 sm" onclick="openClose('${t.id}')">סגור</button> `:''}<button class="btn bd sm" onclick="delTrade('${t.id}')">מחק</button></td>`;
-  let arow='';
-  if(!compact&&t.status==='closed'){
-    const sc=tradeScore(t);const scc=sc>=70?'var(--green)':sc>=40?'var(--yellow)':'var(--red)';
-    const sg=getSugg(t);const rl=t.rp!=null?rlevel(t.rp):null;
-    arow=`<tr style="background:var(--bg2)"><td colspan="12" style="padding:0 10px 10px">
-      <div class="ac2">
-        <div style="font-weight:700;margin-bottom:8px;font-size:12px">📊 ניתוח עסקה</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
-          <div><div style="font-size:10px;color:var(--text2)">ציון</div>
-            <div style="font-weight:700;font-size:18px;color:${scc}">${sc}/100</div>
-            <div class="sb2"><div class="sf" style="width:${sc}%;background:${scc}"></div></div></div>
-          <div><div style="font-size:10px;color:var(--text2)">סיכון</div>
-            <div style="font-weight:600">${c} ${fn(t.ra||0)}</div>
-            <div style="font-size:10px;color:var(--text2)">${fn(t.rp||0,2)}%</div></div>
-          <div><div style="font-size:10px;color:var(--text2)">רמת סיכון</div>
-            ${rl?`<span class="badge ${rl.cls}">${rl.label}</span>`:'—'}</div>
-          <div><div style="font-size:10px;color:var(--text2)">R/R בפועל</div>
-            <div style="font-weight:600">${t.rr?fn(t.rr,2):'—'}</div></div>
-        </div>
-        <div class="as3"><div style="font-size:10px;font-weight:600;color:var(--text2);margin-bottom:4px">המלצות:</div>
-          ${sg.map(s=>`<div class="si">${esc(s)}</div>`).join('')}
-        </div>
-      </div></td></tr>`;
-  }
-  return`<tr>
-    <td class="tsym">${esc(t.symbol)}</td><td>${db}</td>
-    <td>${fn(t.ep)}</td><td style="color:var(--red)">${fn(t.sp)}</td>
-    <td>${t.xp!=null?fn(t.xp):t.lp?`<span style="color:var(--text2)">${fn(t.lp)}</span>`:'—'}</td>
-    <td>${fn(t.shares,0)}</td>
-    <td>${pstr}${t.pp!=null?`<br><span style="font-size:10px;color:var(--text2)">${t.pp>=0?'+':''}${fn(t.pp,2)}%</span>`:''}</td>
-    <td>${rbdg}</td><td>${t.rr?fn(t.rr,2):'—'}</td><td>${sb}</td>
-    <td style="white-space:nowrap;font-size:11px">${fd(t.od)}${t.cd?`<br><span style="color:var(--text3)">${fd(t.cd)}</span>`:''}</td>
-    ${acts}
-  </tr>${arow}`;
 }
 
 // ── ANALYTICS ──
 function renderAnalytics(){
   const closed=S.trades.filter(t=>t.aid===S.activeId&&t.status==='closed');
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
-  if(!closed.length){
-    document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">📈</div><div class="et">אין מספיק נתונים</div><div class="esb">סגור עסקאות כדי לראות ניתוח</div></div>';
-    return;
-  }
+  if(!closed.length){document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">📈</div><div class="et">אין מספיק נתונים</div><div class="esb">סגור עסקאות לראות ניתוח</div></div>';return}
   const wins=closed.filter(t=>t.pnl>0);const losses=closed.filter(t=>t.pnl<=0);
   const tot=closed.reduce((s,t)=>s+(t.pnl||0),0);
   const aw=wins.length?wins.reduce((s,t)=>s+(t.pnl||0),0)/wins.length:0;
@@ -706,50 +658,37 @@ function renderAnalytics(){
   const rrs=closed.filter(t=>t.rr);const avgRR=rrs.length?rrs.reduce((s,t)=>s+t.rr,0)/rrs.length:0;
   document.getElementById('cnt').innerHTML=`
     <div class="sg" style="margin-bottom:14px">
-      <div class="sc"><div class="sl">פקטור רווח</div>
-        <div class="sv" style="color:${pf>=1?'var(--green)':'var(--red)'}">${isFinite(pf)&&pf<99?fn(pf,2):'∞'}</div>
-        <div class="ss">רווח/הפסד יחס</div></div>
+      <div class="sc"><div class="sl">פקטור רווח</div><div class="sv" style="color:${pf>=1?'var(--green)':'var(--red)'}">${isFinite(pf)&&pf<99?fn(pf,2):'∞'}</div></div>
       <div class="sc g"><div class="sl">ממוצע ניצחון</div><div class="sv">${c} ${fn(aw)}</div></div>
       <div class="sc r"><div class="sl">ממוצע הפסד</div><div class="sv">${c} ${fn(Math.abs(al))}</div></div>
       <div class="sc"><div class="sl">סיכון ממוצע</div><div class="sv">${fn(ar,2)}%</div></div>
     </div>
-
-    <!-- Equity curve -->
     <div class="card" style="margin-bottom:14px">
       <div class="ch"><span class="ct">📈 עקומת הון</span></div>
       <div class="cb" style="padding:14px"><div class="cc"><canvas id="ch2"></canvas></div></div>
     </div>
-
-    <!-- Breakdown -->
     <div class="card" style="margin-bottom:14px">
-      <div class="ch"><span class="ct">📊 פירוט כללי</span></div>
+      <div class="ch"><span class="ct">📊 פירוט</span></div>
       <div class="cb">
-        ${[['עסקאות מנצחות',`${wins.length} (${fn((wins.length/closed.length)*100,1)}%)`],
-           ['עסקאות מפסידות',`${losses.length} (${fn((losses.length/closed.length)*100,1)}%)`],
-           ['רווח כולל',`${c} ${fn(tot)}`],
-           ['עסקה טובה ביותר',`+${c} ${fn(Math.max(...closed.map(t=>t.pnl||0)))}`],
-           ['עסקה גרועה ביותר',`${c} ${fn(Math.min(...closed.map(t=>t.pnl||0)))}`],
-           ['R/R ממוצע',avgRR?fn(avgRR,2):'—'],
-        ].map(([l,v])=>`<div class="ar" style="padding:9px 2px"><span style="color:var(--text2)">${l}</span><span style="font-weight:700">${v}</span></div>`).join('')}
+        ${[['עסקאות מנצחות',`${wins.length} (${fn((wins.length/closed.length)*100,1)}%)`],['עסקאות מפסידות',`${losses.length} (${fn((losses.length/closed.length)*100,1)}%)`],
+           ['רווח כולל',`${c} ${fn(tot)}`],['עסקה טובה ביותר',`+${c} ${fn(Math.max(...closed.map(t=>t.pnl||0)))}`],
+           ['עסקה גרועה ביותר',`${c} ${fn(Math.min(...closed.map(t=>t.pnl||0)))}`],['R/R ממוצע',avgRR?fn(avgRR,2):'—']
+        ].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:9px 2px;border-bottom:1px solid var(--border)"><span style="color:var(--text2)">${l}</span><span style="font-weight:700">${v}</span></div>`).join('')}
       </div>
     </div>
-
-    <!-- Monthly -->
     <div class="card" style="margin-bottom:14px">
-      <div class="ch"><span class="ct">📅 ביצועים חודשיים</span></div>
+      <div class="ch"><span class="ct">📅 חודשי</span></div>
       <div class="cb"><div style="display:flex;gap:8px;flex-wrap:wrap">
         ${Object.entries(monthly).sort().map(([m,d])=>`
-          <div style="background:${d.pnl>=0?'var(--gbg)':'var(--rbg)'};border-radius:12px;padding:12px 14px;min-width:100px;text-align:center;border:1px solid ${d.pnl>=0?'rgba(22,163,74,.2)':'rgba(220,38,38,.2)'}">
-            <div style="font-size:10px;color:var(--text2);margin-bottom:3px;font-weight:600">${m}</div>
+          <div style="background:${d.pnl>=0?'var(--gbg)':'var(--rbg)'};border-radius:12px;padding:12px 14px;min-width:100px;text-align:center;border:1px solid ${d.pnl>=0?'var(--gb)':'var(--rb)'}">
+            <div style="font-size:10px;color:var(--text2);font-weight:700;margin-bottom:3px">${m}</div>
             <div style="font-weight:800;font-size:15px;color:${d.pnl>=0?'var(--green)':'var(--red)'}">${d.pnl>=0?'+':''}${c} ${fn(d.pnl)}</div>
             <div style="font-size:10px;color:var(--text2);margin-top:2px">${d.cnt} עסקאות</div>
           </div>`).join('')}
       </div></div>
     </div>
-
-    <!-- Tips -->
     <div class="card">
-      <div class="ch"><span class="ct">💡 המלצות לשיפור</span></div>
+      <div class="ch"><span class="ct">💡 המלצות</span></div>
       <div class="cb" style="padding:12px 14px"><div class="tg">${getTips(S.activeId).map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
     </div>`;
   if(cv.length>=2)drawChart('ch2',cv);
@@ -759,54 +698,40 @@ function renderAnalytics(){
 function renderSettings(){
   document.getElementById('cnt').innerHTML=`
     <div style="max-width:560px">
-      <!-- Accounts -->
-      <div class="section-title">חשבונות</div>
+      <div class="sec-lbl">חשבונות</div>
       <div class="card" style="margin-bottom:18px">
-        <div class="ch"><span class="ct">🏦 ניהול חשבונות</span>
-          <button class="btn bp sm" onclick="openAddAcc()">+ חדש</button></div>
+        <div class="ch"><span class="ct">🏦 ניהול חשבונות</span><button class="btn bp sm" onclick="openAddAcc()">+ חדש</button></div>
         <div class="cb">
           ${S.accounts.length?S.accounts.map(a=>{const b=getBal(a.id);const act=a.id===S.activeId;
             return`<div class="ai2">
               ${act?'<div class="dot"></div>':'<div style="width:9px"></div>'}
-              <div style="flex:1">
-                <div class="an2">${esc(a.name)}</div>
-                <div class="ab2">קרן: ${a.currency} ${fn(a.init)} | יתרה: ${a.currency} ${fn(b)}</div>
-              </div>
+              <div style="flex:1"><div class="an2">${esc(a.name)}</div><div class="ab2">קרן: ${a.currency} ${fn(a.init)} | יתרה: ${a.currency} ${fn(b)}</div></div>
               <button class="btn bs sm" onclick="switchAcc('${a.id}')">${act?'פעיל':'עבור'}</button>
               <button class="btn bd sm" onclick="delAcc('${a.id}')">מחק</button>
             </div>`;}).join('')
-          :'<div style="color:var(--text2);font-size:13px;padding:4px 0">אין חשבונות — צור חשבון ראשון</div>'}
+          :'<div style="color:var(--text2);font-size:13px">אין חשבונות — צור חשבון ראשון</div>'}
         </div>
       </div>
-
-      <!-- Display -->
-      <div class="section-title">תצוגה</div>
+      <div class="sec-lbl">תצוגה</div>
       <div class="card" style="margin-bottom:18px">
         <div class="ch"><span class="ct">🎨 מצב תצוגה</span></div>
         <div class="cb"><div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:14px">מצב לילה</span>
-          <button class="btn ${S.dark?'bp':'bs'}" onclick="toggleDark()" style="min-width:90px;justify-content:center">
-            ${S.dark?'☀️ בהיר':'🌙 כהה'}
-          </button>
+          <span style="font-size:14px;font-weight:500">מצב לילה</span>
+          <button class="btn ${S.dark?'bp':'bs'}" onclick="toggleDark()" style="min-width:90px;justify-content:center">${S.dark?'☀️ בהיר':'🌙 כהה'}</button>
         </div></div>
       </div>
-
-      <!-- Stats -->
-      <div class="section-title">סטטיסטיקות</div>
+      <div class="sec-lbl">נתונים</div>
       <div class="card">
-        <div class="ch"><span class="ct">📊 נתוני מערכת</span></div>
+        <div class="ch"><span class="ct">📊 סטטיסטיקות</span></div>
         <div class="cb">
-          ${[['חשבונות',S.accounts.length],
-             ['עסקאות סה"כ',S.trades.length],
-             ['עסקאות פתוחות',S.trades.filter(t=>t.status==='open').length],
-             ['עסקאות סגורות',S.trades.filter(t=>t.status==='closed').length]
-          ].map(([l,v])=>`<div class="ar" style="padding:9px 2px"><span style="color:var(--text2)">${l}</span><span style="font-weight:700">${v}</span></div>`).join('')}
+          ${[['חשבונות',S.accounts.length],['עסקאות סה"כ',S.trades.length],['פתוחות',S.trades.filter(t=>t.status==='open').length],['סגורות',S.trades.filter(t=>t.status==='closed').length]
+          ].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:9px 2px;border-bottom:1px solid var(--border)"><span style="color:var(--text2)">${l}</span><span style="font-weight:800">${v}</span></div>`).join('')}
         </div>
       </div>
     </div>`;
 }
 
-// ── ADD TRADE MODAL ──
+// ── ADD TRADE ──
 function openAdd(){
   const a=S.accounts.find(x=>x.id===S.activeId);
   if(!a){alert('אנא צור חשבון תחילה');return}
@@ -814,34 +739,25 @@ function openAdd(){
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
       <div class="md">
-        <div class="mh" style="position:relative"><span class="mt2">➕ עסקה חדשה</span>
-          <button class="bic" onclick="closeM()">✕</button></div>
+        <div class="md-handle"></div>
+        <div class="mh"><span class="mt2">➕ עסקה חדשה</span><button class="ico-btn" onclick="closeM()">✕</button></div>
         <div class="mb2">
-          <div class="fg"><label class="fl">נייר ערך / סמל</label>
-            <input class="fi" id="fs2" placeholder="לדוגמה: AAPL" style="text-transform:uppercase;font-size:16px"></div>
+          <div class="fg"><label class="fl">נייר ערך / סמל</label><input class="fi" id="fs2" placeholder="AAPL, TSLA..." style="text-transform:uppercase;font-size:17px"></div>
           <div class="fg"><label class="fl">כיוון עסקה</label>
-            <div class="dt">
-              <button id="bl2" class="al" onclick="setDir('long')">▲ Long (קנייה)</button>
-              <button id="bs3" onclick="setDir('short')">▼ Short (מכירה)</button>
-            </div><input type="hidden" id="fd3" value="long"></div>
+            <div class="dt"><button id="bl2" class="al" onclick="setDir('long')">▲ Long (קנייה)</button><button id="bs3" onclick="setDir('short')">▼ Short (מכירה)</button></div>
+            <input type="hidden" id="fd3" value="long"></div>
           <div class="fg2">
-            <div class="fg"><label class="fl">מחיר כניסה</label>
-              <input class="fi" id="fe2" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
-            <div class="fg"><label class="fl">סטופ לוס</label>
-              <input class="fi" id="fst2" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
-            <div class="fg"><label class="fl">יעד רווח (אופציונלי)</label>
-              <input class="fi" id="fl3" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
-            <div class="fg"><label class="fl">כמות מניות</label>
-              <input class="fi" id="fsh2" type="number" step="1" placeholder="0" oninput="calcPrev()"></div>
+            <div class="fg"><label class="fl">מחיר כניסה</label><input class="fi" id="fe2" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
+            <div class="fg"><label class="fl">סטופ לוס</label><input class="fi" id="fst2" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
+            <div class="fg"><label class="fl">יעד רווח (אופציונלי)</label><input class="fi" id="fl3" type="number" step="0.01" placeholder="0.00" oninput="calcPrev()"></div>
+            <div class="fg"><label class="fl">כמות מניות</label><input class="fi" id="fsh2" type="number" step="1" placeholder="0" oninput="calcPrev()"></div>
           </div>
           <div class="fg"><label class="fl">סכום שהושקע (${c})</label>
             <input class="fi" id="finv2" type="number" step="0.01" placeholder="מחושב אוטומטית">
-            <div class="fh">מחושב אוטומטית: מחיר כניסה × כמות</div></div>
+            <div class="fh">מחושב אוטומטית: כניסה × כמות</div></div>
           <div id="cprev3"></div>
-          <div class="fg"><label class="fl">תאריך פתיחה</label>
-            <input class="fi" id="fdt2" type="date" value="${today()}"></div>
-          <div class="fg"><label class="fl">הערות</label>
-            <textarea class="fi" id="fnt2" rows="2" placeholder="הערות אופציונליות..."></textarea></div>
+          <div class="fg"><label class="fl">תאריך פתיחה</label><input class="fi" id="fdt2" type="date" value="${today()}"></div>
+          <div class="fg"><label class="fl">הערות</label><textarea class="fi" id="fnt2" rows="2" placeholder="הערות..."></textarea></div>
         </div>
         <div class="mf">
           <button class="btn bp" onclick="submitAdd()">הוסף עסקה</button>
@@ -849,6 +765,7 @@ function openAdd(){
         </div>
       </div>
     </div>`;
+  setTimeout(()=>document.getElementById('fs2')?.focus(),200);
 }
 function setDir(d){
   document.getElementById('fd3').value=d;
@@ -887,37 +804,33 @@ function submitAdd(){
   if(!sym){alert('נא להזין סמל');return}
   if(!e||e<=0){alert('נא להזין מחיר כניסה');return}
   if(!s||s<=0){alert('נא להזין סטופ לוס');return}
-  if(!sh||sh<=0){alert('נא להזין כמות מניות');return}
+  if(!sh||sh<=0){alert('נא להזין כמות');return}
   const b=getBal(S.activeId);
-  const ra=calcRisk(e,s,sh);const rp=b>0?(ra/b)*100:0;
-  const rv=l?calcRR(e,s,l):null;
-  S.trades.push({id:uid(),aid:S.activeId,symbol:sym,dir:d,ep:e,sp:s,
-    lp:l||null,shares:sh,inv,status:'open',od:dt,ra,rp,rr:rv,notes:nt});
+  const ra=calcRisk(e,s,sh);const rp=b>0?(ra/b)*100:0;const rv=l?calcRR(e,s,l):null;
+  S.trades.push({id:uid(),aid:S.activeId,symbol:sym,dir:d,ep:e,sp:s,lp:l||null,shares:sh,inv,status:'open',od:dt,ra,rp,rr:rv,notes:nt});
   save();closeM();render();
 }
 
-// ── CLOSE TRADE MODAL ──
+// ── CLOSE TRADE ──
 function openClose(id){
   const t=S.trades.find(x=>x.id===id);if(!t)return;
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
-      <div class="md" style="max-width:400px">
-        <div class="mh" style="position:relative"><span class="mt2">🔒 סגירת ${esc(t.symbol)}</span>
-          <button class="bic" onclick="closeM()">✕</button></div>
+      <div class="md" style="max-width:420px">
+        <div class="md-handle"></div>
+        <div class="mh"><span class="mt2">🔒 סגירת ${esc(t.symbol)}</span><button class="ico-btn" onclick="closeM()">✕</button></div>
         <div class="mb2">
-          <div style="background:var(--bg2);border-radius:12px;padding:12px;margin-bottom:16px">
-            <div class="cr"><span style="color:var(--text2)">כיוון:</span><strong>${t.dir==='long'?'Long ▲':'Short ▼'}</strong></div>
+          <div style="background:var(--bg2);border-radius:14px;padding:14px;margin-bottom:18px">
+            <div class="cr"><span style="color:var(--text2)">כיוון:</span><strong>${t.dir==='long'?'▲ Long':'▼ Short'}</strong></div>
             <div class="cr"><span style="color:var(--text2)">כניסה:</span><strong>${fn(t.ep)}</strong></div>
             <div class="cr"><span style="color:var(--text2)">סטופ:</span><strong style="color:var(--red)">${fn(t.sp)}</strong></div>
             ${t.lp?`<div class="cr"><span style="color:var(--text2)">יעד:</span><strong style="color:var(--primary)">${fn(t.lp)}</strong></div>`:''}
             <div class="cr"><span style="color:var(--text2)">כמות:</span><strong>${t.shares}</strong></div>
           </div>
-          <div class="fg"><label class="fl">מחיר יציאה</label>
-            <input class="fi" id="cx2" type="number" step="0.01" placeholder="0.00" oninput="prevClose('${id}')" style="font-size:18px"></div>
+          <div class="fg"><label class="fl">מחיר יציאה</label><input class="fi" id="cx2" type="number" step="0.01" placeholder="0.00" oninput="prevClose('${id}')" style="font-size:20px"></div>
           <div id="cprev4"></div>
-          <div class="fg"><label class="fl">תאריך סגירה</label>
-            <input class="fi" id="cdt2" type="date" value="${today()}"></div>
+          <div class="fg"><label class="fl">תאריך סגירה</label><input class="fi" id="cdt2" type="date" value="${today()}"></div>
         </div>
         <div class="mf">
           <button class="btn bp" onclick="submitClose('${id}')">סגור עסקה</button>
@@ -934,8 +847,8 @@ function prevClose(id){
   const p=calcPnL(t.dir,t.ep,ex,t.shares);
   const pp=(p/t.inv)*100;const col=p>=0?'var(--green)':'var(--red)';
   document.getElementById('cprev4').innerHTML=`
-    <div class="cd2" style="border-color:${col};background:${p>=0?'var(--gbg)':'var(--rbg)'};margin-bottom:14px">
-      <div class="cr"><span>רווח/הפסד:</span><strong style="color:${col};font-size:18px">${p>=0?'+':''}${c} ${fn(p)}</strong></div>
+    <div class="cd2" style="border:1.5px solid ${col};background:${p>=0?'var(--gbg)':'var(--rbg)'};margin-bottom:16px">
+      <div class="cr"><span>רווח/הפסד:</span><strong style="color:${col};font-size:20px">${p>=0?'+':''}${c} ${fn(p)}</strong></div>
       <div class="cr"><span>תשואה:</span><strong style="color:${col}">${pp>=0?'+':''}${fn(pp,2)}%</strong></div>
     </div>`;
 }
@@ -957,16 +870,14 @@ function delTrade(id){
 function openAddAcc(){
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
-      <div class="md" style="max-width:380px">
-        <div class="mh" style="position:relative"><span class="mt2">🏦 חשבון חדש</span>
-          <button class="bic" onclick="closeM()">✕</button></div>
+      <div class="md" style="max-width:400px">
+        <div class="md-handle"></div>
+        <div class="mh"><span class="mt2">🏦 חשבון חדש</span><button class="ico-btn" onclick="closeM()">✕</button></div>
         <div class="mb2">
-          <div class="fg"><label class="fl">שם החשבון</label>
-            <input class="fi" id="an2" placeholder="לדוגמה: תיק IRA" style="font-size:16px"></div>
-          <div class="fg"><label class="fl">יתרה התחלתית</label>
-            <input class="fi" id="ab3" type="number" step="100" placeholder="0" style="font-size:16px"></div>
+          <div class="fg"><label class="fl">שם החשבון</label><input class="fi" id="an2" placeholder="לדוגמה: תיק IRA" style="font-size:17px"></div>
+          <div class="fg"><label class="fl">יתרה התחלתית</label><input class="fi" id="ab3" type="number" step="100" placeholder="0" style="font-size:17px"></div>
           <div class="fg"><label class="fl">מטבע</label>
-            <select class="fi" id="ac2" style="font-size:16px">
+            <select class="fi" id="ac2" style="font-size:15px">
               <option value="₪">₪ שקל ישראלי</option>
               <option value="$">$ דולר אמריקאי</option>
               <option value="€">€ יורו</option>
@@ -978,7 +889,7 @@ function openAddAcc(){
         </div>
       </div>
     </div>`;
-  setTimeout(()=>document.getElementById('an2')?.focus(),100);
+  setTimeout(()=>document.getElementById('an2')?.focus(),200);
 }
 function submitAcc(){
   const n=(document.getElementById('an2')?.value||'').trim();
@@ -991,7 +902,7 @@ function submitAcc(){
 }
 function delAcc(id){
   if(S.accounts.length===1){alert('לא ניתן למחוק את החשבון האחרון');return}
-  if(!confirm('מחיקת חשבון תמחק גם את כל העסקאות שלו. להמשיך?'))return;
+  if(!confirm('מחיקת חשבון תמחק גם את כל עסקאותיו. להמשיך?'))return;
   S.accounts=S.accounts.filter(a=>a.id!==id);
   S.trades=S.trades.filter(t=>t.aid!==id);
   if(S.activeId===id)S.activeId=S.accounts[0]?.id||null;
@@ -1008,20 +919,14 @@ function toggleDark(){S.dark=!S.dark;document.documentElement.dataset.dark=S.dar
 function render(){
   document.documentElement.dataset.dark=S.dark;
   renderSB();renderBNav();renderHDR();
-  switch(S.page){
-    case'dashboard':renderDash();break;
-    case'trades':renderTrades();break;
-    case'analytics':renderAnalytics();break;
-    case'settings':renderSettings();break;
-  }
+  if(S.page==='dashboard')renderDash();
+  else if(S.page==='trades')renderTrades();
+  else if(S.page==='analytics')renderAnalytics();
+  else if(S.page==='settings')renderSettings();
 }
 
-// ── SERVICE WORKER ──
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
-}
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 
-// ── INIT ──
 load();render();
 window.addEventListener('resize',()=>{
   render();

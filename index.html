@@ -14,68 +14,116 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8fafc;--bg2:#f1f5f9;--card:#fff;
+  --bg:#f0f4f8;--bg2:#e2e8f0;--card:#fff;
   --text:#1e293b;--text2:#64748b;--text3:#94a3b8;
   --border:#e2e8f0;--primary:#3b82f6;--primary-h:#2563eb;
-  --green:#22c55e;--gbg:rgba(34,197,94,.12);
-  --red:#ef4444;--rbg:rgba(239,68,68,.12);
-  --orange:#f97316;--obg:rgba(249,115,22,.12);
-  --yellow:#eab308;--ybg:rgba(234,179,8,.12);
-  --sw:220px;--hh:64px;--r:12px;
-  --sh:0 1px 3px rgba(0,0,0,.08);--shm:0 4px 12px rgba(0,0,0,.1)
+  --green:#16a34a;--gbg:rgba(22,163,74,.1);
+  --red:#dc2626;--rbg:rgba(220,38,38,.1);
+  --orange:#ea580c;--obg:rgba(234,88,12,.1);
+  --yellow:#ca8a04;--ybg:rgba(202,138,4,.1);
+  --sw:230px;--hh:56px;--bnav:60px;--r:14px;
+  --sh:0 1px 4px rgba(0,0,0,.07);--shm:0 4px 16px rgba(0,0,0,.1)
 }
 [data-dark=true]{
-  --bg:#0f172a;--bg2:#1e293b;--card:#1e293b;
-  --text:#f1f5f9;--text2:#94a3b8;--text3:#475569;
-  --border:#334155;--sh:0 1px 3px rgba(0,0,0,.3);--shm:0 4px 12px rgba(0,0,0,.4)
+  --bg:#0a0f1e;--bg2:#111827;--card:#1a2235;
+  --text:#f1f5f9;--text2:#8b9ab0;--text3:#4b5e75;
+  --border:#1e2d45;--sh:0 1px 4px rgba(0,0,0,.4);--shm:0 4px 16px rgba(0,0,0,.5)
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;direction:rtl;transition:background .2s,color .2s}
-#sb{width:var(--sw);background:#0f172a;height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100}
-[data-dark=true] #sb{background:#020617;border-left:1px solid #1e293b}
-.sb-logo{padding:18px 14px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
-.sb-icon{width:36px;height:36px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.sb-title{color:#f1f5f9;font-size:15px;font-weight:700}
-.sb-sub{color:#64748b;font-size:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;direction:rtl;transition:background .25s,color .25s}
+
+/* ── SIDEBAR desktop ── */
+#sb{width:var(--sw);background:#0f172a;height:100vh;position:fixed;right:0;top:0;display:flex;flex-direction:column;z-index:100;border-left:1px solid rgba(255,255,255,.05)}
+[data-dark=true] #sb{background:#060d1a}
+.sb-logo{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:11px}
+.sb-icon{width:38px;height:38px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.sb-title{color:#f1f5f9;font-size:15px;font-weight:700;letter-spacing:-.2px}
+.sb-sub{color:#4b6280;font-size:10px;margin-top:1px}
 #snav{padding:10px 8px;flex:1}
-.ni{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;color:#94a3b8;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
-.ni:hover{background:rgba(255,255,255,.06);color:#e2e8f0}
-.ni.on{background:rgba(59,130,246,.15);color:#60a5fa}
-.ni .ic{font-size:15px;flex-shrink:0}
-.sb-acc{padding:10px 8px;border-top:1px solid rgba(255,255,255,.08)}
-.sb-acc select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:#e2e8f0;font-size:12px;cursor:pointer;outline:none;font-family:inherit}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;color:#64748b;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;margin-bottom:2px;user-select:none}
+.ni:hover{background:rgba(255,255,255,.06);color:#cbd5e1}
+.ni.on{background:rgba(59,130,246,.18);color:#60a5fa}
+.ni .ic{font-size:16px;flex-shrink:0}
+.sb-acc{padding:10px 8px;border-top:1px solid rgba(255,255,255,.07)}
+.sb-acc select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:9px 11px;color:#cbd5e1;font-size:12px;cursor:pointer;outline:none;font-family:inherit}
 .sb-acc select option{background:#1e293b}
+
+/* ── MAIN ── */
 #main{margin-right:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
-#hdr{height:var(--hh);background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 22px;gap:14px;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
-.hdr-title{font-size:17px;font-weight:700;flex:1}
-.hdr-bal{display:flex;flex-direction:column;align-items:center;background:var(--bg2);padding:5px 14px;border-radius:8px;border:1px solid var(--border)}
-.hdr-bal-lbl{font-size:10px;color:var(--text2);font-weight:500}
-.hdr-bal-val{font-size:15px;font-weight:700;color:var(--primary)}
-.bic{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s}
+#hdr{height:var(--hh);background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
+.hdr-title{font-size:17px;font-weight:700;flex:1;letter-spacing:-.3px}
+.hdr-acc{display:flex;flex-direction:column;align-items:flex-end;background:var(--bg2);padding:5px 12px;border-radius:9px;border:1px solid var(--border)}
+.hdr-acc-lbl{font-size:10px;color:var(--text2);font-weight:500}
+.hdr-acc-val{font-size:15px;font-weight:700;color:var(--primary)}
+.bic{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s}
 .bic:hover{background:var(--bg2);color:var(--text)}
-#cnt{padding:22px;flex:1}
+#cnt{padding:20px;flex:1;max-width:100%}
+
+/* ── BOTTOM NAV mobile ── */
+#bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 0;cursor:pointer;color:var(--text3);transition:color .15s;user-select:none;-webkit-tap-highlight-color:transparent}
+.bni.on{color:var(--primary)}
+.bni-ic{font-size:22px;line-height:1}
+.bni-lbl{font-size:10px;font-weight:600}
+
+/* ── FAB ── */
+.fab{position:fixed;left:18px;z-index:99;width:54px;height:54px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 18px rgba(59,130,246,.55);display:none;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
+.fab:active{transform:scale(.91);box-shadow:0 2px 8px rgba(59,130,246,.4)}
+
+/* ── CARDS & STATS ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh)}
 .ch{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ct{font-size:14px;font-weight:600}
-.cb{padding:18px}
-.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;box-shadow:var(--sh)}
-.sl{font-size:11px;color:var(--text2);font-weight:500;margin-bottom:5px}
+.cb{padding:16px 18px}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
+.sl{font-size:11px;color:var(--text2);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
 .sv{font-size:22px;font-weight:700;line-height:1.2}
 .ss{font-size:11px;color:var(--text3);margin-top:3px}
 .sc.g .sv{color:var(--green)}.sc.r .sv{color:var(--red)}.sc.b .sv{color:var(--primary)}
-.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:inherit}
+
+/* ── HERO CARD mobile ── */
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 60%,#3b82f6 100%);border-radius:18px;padding:22px 20px 18px;margin-bottom:14px;color:#fff;box-shadow:0 6px 24px rgba(37,99,235,.35)}
+.hero-lbl{font-size:12px;opacity:.75;font-weight:500;margin-bottom:3px}
+.hero-val{font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1.1}
+.hero-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.hero-stat{text-align:center}
+.hero-stat-v{font-size:16px;font-weight:700}
+.hero-stat-l{font-size:10px;opacity:.7;margin-top:1px}
+.hero-divider{width:1px;height:32px;background:rgba(255,255,255,.2)}
+
+/* ── TRADE CARDS mobile ── */
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;overflow:hidden;transition:box-shadow .15s}
+.tc-head{display:flex;align-items:center;padding:13px 15px;gap:10px}
+.tc-sym{font-weight:800;font-size:17px;flex:1;letter-spacing:-.3px}
+.tc-pnl{font-weight:700;font-size:16px;text-align:left}
+.tc-body{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding:0 15px 13px}
+.tc-kv{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border)}
+.tc-kv:last-child{border-bottom:none}
+.tc-k{color:var(--text2)}
+.tc-v{font-weight:600;color:var(--text)}
+.tc-actions{display:flex;gap:8px;padding:10px 15px;border-top:1px solid var(--border);background:var(--bg)}
+.tc-analysis{padding:12px 15px;background:var(--bg2);border-top:1px solid var(--border);font-size:12px}
+.tc-score-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px}
+.tc-score-fill{height:100%;border-radius:3px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:inherit;-webkit-tap-highlight-color:transparent}
 .bp{background:var(--primary);color:#fff}.bp:hover{background:var(--primary-h)}
 .bs{background:var(--bg2);color:var(--text);border:1px solid var(--border)}.bs:hover{background:var(--border)}
-.bd{background:var(--rbg);color:var(--red);border:1px solid rgba(239,68,68,.2)}.bd:hover{background:rgba(239,68,68,.22)}
-.bg2{background:var(--gbg);color:var(--green);border:1px solid rgba(34,197,94,.2)}.bg2:hover{background:rgba(34,197,94,.22)}
-.sm{padding:4px 9px;font-size:11px}
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:600}
+.bd{background:var(--rbg);color:var(--red);border:1px solid rgba(220,38,38,.15)}.bd:hover{background:rgba(220,38,38,.18)}
+.bg2{background:var(--gbg);color:var(--green);border:1px solid rgba(22,163,74,.2)}.bg2:hover{background:rgba(22,163,74,.2)}
+.sm{padding:5px 11px;font-size:11px}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
 .bg3{background:var(--gbg);color:var(--green)}
 .br{background:var(--rbg);color:var(--red)}
 .bo{background:var(--obg);color:var(--orange)}
 .by{background:var(--ybg);color:var(--yellow)}
-.bb{background:rgba(59,130,246,.1);color:var(--primary)}
+.bb{background:rgba(59,130,246,.12);color:var(--primary)}
 .bgr{background:var(--bg2);color:var(--text2)}
+
+/* ── TABLE desktop ── */
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{padding:9px 10px;text-align:right;font-weight:600;color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:.05em;background:var(--bg2);border-bottom:1px solid var(--border)}
@@ -84,66 +132,89 @@ tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--bg2)}
 tbody td{padding:10px;vertical-align:middle}
 .tsym{font-weight:700;font-size:13px}
-.cc{position:relative;width:100%;height:220px;margin-top:4px}
+.ac2{background:var(--bg2);border-radius:10px;padding:12px;margin-top:6px;font-size:12px}
+.as3{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.si{padding:5px 8px;background:var(--card);border-radius:6px;margin-bottom:3px;font-size:11px;line-height:1.5}
+
+/* ── CHART ── */
+.cc{position:relative;width:100%;height:200px}
 canvas{display:block}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px)}
+.md{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:540px;max-height:93vh;overflow-y:auto;box-shadow:0 -6px 32px rgba(0,0,0,.25)}
+.mh{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.mh::before{content:'';display:block;width:36px;height:4px;background:var(--border);border-radius:2px;position:absolute;top:10px;left:50%;transform:translateX(-50%)}
+.mt2{font-size:17px;font-weight:700}
+.mb2{padding:20px 22px}
+.mf{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.mf .btn{flex:1;justify-content:center;padding:13px}
+
+/* ── FORM ── */
 .fg{margin-bottom:14px}
-.fl{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px}
-.fi{width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:13px;font-family:inherit;transition:border-color .15s;outline:none}
+.fl{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px}
+.fi{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:14px;font-family:inherit;transition:border-color .15s;outline:none}
 .fi:focus{border-color:var(--primary)}
 .fi[type=number]{direction:ltr;text-align:right}
 .fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dt{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.dt button{flex:1;padding:8px;border:none;background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.dt{display:flex;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
+.dt button{flex:1;padding:11px 8px;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
 .dt button.al{background:var(--gbg);color:var(--green)}
 .dt button.as{background:var(--rbg);color:var(--red)}
-.fh{font-size:10px;color:var(--text3);margin-top:3px}
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
-.md{background:var(--card);border-radius:16px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.mh{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.mt2{font-size:17px;font-weight:700}
-.mb2{padding:20px 22px}
-.mf{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px}
-.ac2{background:var(--bg2);border-radius:10px;padding:12px;margin-top:8px;font-size:12px}
-.ar{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)}
-.ar:last-of-type{border-bottom:none}
-.al2{color:var(--text2)}.av{font-weight:600}
-.as3{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.si{padding:5px 8px;background:var(--card);border-radius:6px;margin-bottom:3px;font-size:11px;line-height:1.5}
-.tg{display:flex;flex-direction:column;gap:8px}
-.ti{padding:10px 14px;background:var(--bg2);border-radius:10px;border-right:3px solid var(--primary);font-size:12px;line-height:1.5}
-.tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:10px;margin-bottom:14px}
-.tab{flex:1;padding:6px 10px;border-radius:7px;border:none;background:transparent;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
-.tab.on{background:var(--card);color:var(--text);box-shadow:var(--sh);font-weight:600}
-.es{text-align:center;padding:50px 20px;color:var(--text2)}
-.ei{font-size:40px;margin-bottom:10px}
-.et{font-size:14px;font-weight:600;margin-bottom:5px}
-.esb{font-size:12px;color:var(--text3)}
+.fh{font-size:10px;color:var(--text3);margin-top:4px}
+
+/* ── MISC ── */
+.tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:11px;margin-bottom:14px}
+.tab{flex:1;padding:8px 10px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
+.tab.on{background:var(--card);color:var(--text);box-shadow:var(--sh);font-weight:700}
+.es{text-align:center;padding:52px 20px;color:var(--text2)}
+.ei{font-size:42px;margin-bottom:10px}
+.et{font-size:15px;font-weight:700;margin-bottom:5px}
+.esb{font-size:13px;color:var(--text3)}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.cd2{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:11px;color:var(--text2);margin-top:10px}
-.cr{display:flex;justify-content:space-between;padding:2px 0}
+.cd2{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--text2);margin-top:10px}
+.cr{display:flex;justify-content:space-between;padding:3px 0}
 .cr strong{color:var(--text)}
 .sb2{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:3px}
 .sf{height:100%;border-radius:3px}
-.ai2{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg2);border-radius:10px;border:1px solid var(--border);margin-bottom:8px}
-.an2{font-weight:600;font-size:13px}
+.ai2{display:flex;align-items:center;gap:10px;padding:13px 15px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);margin-bottom:8px}
+.an2{font-weight:700;font-size:13px}
 .ab2{font-size:11px;color:var(--text2);margin-top:2px}
-.dot{width:8px;height:8px;background:var(--green);border-radius:50%}
-select.fs{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;outline:none}
-::-webkit-scrollbar{width:5px;height:5px}
+.dot{width:9px;height:9px;background:var(--green);border-radius:50%}
+select.fs{padding:7px 11px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;outline:none}
+.tg{display:flex;flex-direction:column;gap:8px}
+.ti{padding:11px 14px;background:var(--bg2);border-radius:11px;border-right:3px solid var(--primary);font-size:12px;line-height:1.6}
+::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-.card,.sc,#hdr,#sb{transition:background .2s,border-color .2s}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.card,.sc,#hdr,#sb,.tc{transition:background .2s,border-color .2s,box-shadow .2s}
+.section-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;margin-top:4px}
+
+/* ── MOBILE OVERRIDES ── */
 @media(max-width:768px){
   :root{--sw:0px}
-  .sg{grid-template-columns:1fr 1fr}
-  #cnt{padding:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom))}
-  #hdr{padding:0 14px;padding-top:env(safe-area-inset-top)}
-  .sv{font-size:18px}
-  body{font-size:13px}
+  #sb{display:none}
+  #main{margin-right:0;padding-bottom:calc(var(--bnav) + env(safe-area-inset-bottom))}
+  #bnav{display:flex}
+  .fab{display:flex;bottom:calc(var(--bnav) + env(safe-area-inset-bottom) + 14px)}
+  #cnt{padding:14px 14px 8px}
+  .sg{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .sv{font-size:19px}
+  .desk-only{display:none!important}
+  .mo{align-items:flex-end}
+}
+@media(min-width:769px){
+  .mob-only{display:none!important}
+  .fab{display:none!important}
+  #bnav{display:none!important}
+  .mo{align-items:center;padding:16px}
+  .md{border-radius:18px;max-width:480px}
 }
 </style>
 </head>
 <body>
+
+<!-- SIDEBAR desktop -->
 <div id="sb">
   <div class="sb-logo">
     <div class="sb-icon">📈</div>
@@ -152,38 +223,48 @@ select.fs{padding:6px 10px;border:1px solid var(--border);border-radius:8px;back
   <nav id="snav"></nav>
   <div class="sb-acc"><select id="acc-sel" onchange="switchAcc(this.value)"></select></div>
 </div>
+
+<!-- MAIN -->
 <div id="main">
   <div id="hdr"></div>
   <div id="cnt"></div>
 </div>
+
+<!-- BOTTOM NAV mobile -->
+<div id="bnav"></div>
+
+<!-- FAB mobile -->
+<button class="fab" onclick="openAdd()" title="עסקה חדשה">+</button>
+
+<!-- MODALS -->
 <div id="mc"></div>
+
 <script>
-// STATE
+// ── STATE ──
 let S={accounts:[],activeId:null,trades:[],dark:false,page:'dashboard',tf:'all',df:'all'};
 
-// STORAGE
+// ── STORAGE ──
 function load(){
   try{const d=localStorage.getItem('tt3');if(d)Object.assign(S,JSON.parse(d))}catch(e){}
-  // no sample data — start fresh
 }
 function save(){
   localStorage.setItem('tt3',JSON.stringify({accounts:S.accounts,activeId:S.activeId,trades:S.trades,dark:S.dark}));
 }
 
-// UTILS
+// ── UTILS ──
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function today(){return new Date().toISOString().slice(0,10)}
 function fn(n,d=2){return n==null?'-':Number(n).toLocaleString('he-IL',{minimumFractionDigits:d,maximumFractionDigits:d})}
 function fd(s){if(!s)return '-';return new Date(s+'T12:00:00').toLocaleDateString('he-IL')}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function mob(){return window.innerWidth<=768}
 
-// CALCULATIONS
+// ── CALC ──
 function calcPnL(dir,entry,exit,shares){return dir==='long'?(exit-entry)*shares:(entry-exit)*shares}
 function calcRisk(entry,stop,shares){return Math.abs(entry-stop)*shares}
 function calcRR(entry,stop,limit){
   if(!limit||!stop||!entry)return null;
-  const r=Math.abs(entry-stop);
-  return r?Math.abs(limit-entry)/r:null;
+  const r=Math.abs(entry-stop);return r?Math.abs(limit-entry)/r:null;
 }
 function rlevel(pct){
   if(pct<1)return{label:'נמוך',cls:'bg3'};
@@ -192,8 +273,7 @@ function rlevel(pct){
   return{label:'גבוה מאוד',cls:'br'};
 }
 function getBal(aid){
-  const a=S.accounts.find(x=>x.id===aid);
-  if(!a)return 0;
+  const a=S.accounts.find(x=>x.id===aid);if(!a)return 0;
   return a.init+S.trades.filter(t=>t.aid===aid&&t.status==='closed').reduce((s,t)=>s+(t.pnl||0),0);
 }
 function getCurve(aid){
@@ -228,11 +308,11 @@ function tradeScore(t){
 }
 function getSugg(t){
   const s=[];
-  if(t.rp>5)s.push('⚠️ סיכון גבוה מאוד — שאוף לסיכון מקסימלי של 2% לעסקה.');
-  else if(t.rp>2)s.push('📊 שקול להקטין גודל פוזיציה — סיכון מעל 2%.');
-  if(t.rr&&t.rr<1)s.push('🎯 R/R מתחת ל-1 — שפר יעד רווח או קרב סטופ לוס.');
+  if(t.rp>5)s.push('⚠️ סיכון גבוה מאוד — שאוף ל-2% מקסימום לעסקה.');
+  else if(t.rp>2)s.push('📊 סיכון מעל 2% — שקול להקטין גודל פוזיציה.');
+  if(t.rr&&t.rr<1)s.push('🎯 R/R מתחת ל-1 — שפר יעד רווח או קרב סטופ.');
   if(t.pnl<0)s.push('📉 עסקה הפסדית — בדוק אם ניתוח הכניסה היה תקין.');
-  else if(t.pnl>0)s.push('✅ עסקה רווחית — שמור את האסטרטגיה שעבדה כאן.');
+  else if(t.pnl>0)s.push('✅ עסקה רווחית — שמור את האסטרטגיה הזו.');
   if(!s.length)s.push('👍 ניהול עסקה תקין. המשך כך!');
   return s;
 }
@@ -251,17 +331,16 @@ function getTips(aid){
   if(wr<40)res.push(`📊 אחוז הצלחה ${fn(wr,1)}% — שפר נקודות כניסה וחכה לסטאפ ברור.`);
   else if(wr>65)res.push(`🏆 אחוז הצלחה מעולה ${fn(wr,1)}%! שמור על הדיסציפלינה.`);
   else res.push(`👍 אחוז הצלחה סביר ${fn(wr,1)}%. שאוף ל-50%+ עם R/R גבוה.`);
-  if(ar>3)res.push(`⚠️ סיכון ממוצע גבוה (${fn(ar,1)}%). הורד ל-1-2% לעסקה.`);
+  if(ar>3)res.push(`⚠️ סיכון ממוצע גבוה (${fn(ar,1)}%). הורד ל-1–2% לעסקה.`);
   else if(ar>0)res.push(`✅ ניהול סיכון סביר — ממוצע ${fn(ar,1)}%. שמור על זה.`);
-  if(avgR>0&&avgR<1.5)res.push(`🎯 R/R ממוצע ${fn(avgR,2)} — שאוף ל-2:1. חפש יעדים רחוקים יותר.`);
+  if(avgR>0&&avgR<1.5)res.push(`🎯 R/R ממוצע ${fn(avgR,2)} — שאוף ל-2:1.`);
   else if(avgR>=2)res.push(`🚀 R/R ממוצע מצוין ${fn(avgR,2)}! המספרים בצדך.`);
   res.push('📅 בדוק ביצועים לפי ימי שבוע — ייתכן שיש ימים עדיפים.');
   res.push('🧘 שמור על קור רוח. אחרי הפסד, עצור לפחות 30 דקות.');
   return res.slice(0,5);
 }
 
-
-// CHART
+// ── CHART ──
 function drawChart(id,data){
   requestAnimationFrame(()=>{
     const cv=document.getElementById(id);if(!cv||data.length<2)return;
@@ -271,12 +350,12 @@ function drawChart(id,data){
     cv.style.width=rect.width+'px';cv.style.height=rect.height+'px';
     const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
     const W=rect.width,H=rect.height;
-    const p={t:16,r:16,b:32,l:68};
+    const p={t:14,r:12,b:28,l:62};
     const pw=W-p.l-p.r,ph=H-p.t-p.b;
     const bals=data.map(d=>d.balance);
     const mn=Math.min(...bals),mx=Math.max(...bals);const rng=mx-mn||1;
     const dk=document.documentElement.dataset.dark==='true';
-    const tc=dk?'#64748b':'#94a3b8';const gc=dk?'#1e293b':'#f1f5f9';
+    const tc=dk?'#4b5e75':'#94a3b8';const gc=dk?'#1a2235':'#f1f5f9';
     ctx.clearRect(0,0,W,H);
     for(let i=0;i<=4;i++){
       const y=p.t+(i/4)*ph;
@@ -287,32 +366,35 @@ function drawChart(id,data){
     }
     const xs=i=>p.l+(i/(data.length-1))*pw;
     const ys=v=>p.t+ph-((v-mn)/rng)*ph;
+    const isUp=data[data.length-1].balance>=data[0].balance;
+    const lineColor=isUp?'#22c55e':'#ef4444';
     const gr=ctx.createLinearGradient(0,p.t,0,p.t+ph);
-    gr.addColorStop(0,'rgba(59,130,246,.22)');gr.addColorStop(1,'rgba(59,130,246,0)');
+    gr.addColorStop(0,isUp?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)');
+    gr.addColorStop(1,isUp?'rgba(34,197,94,0)':'rgba(239,68,68,0)');
     ctx.beginPath();ctx.moveTo(xs(0),ys(data[0].balance));
     for(let i=1;i<data.length;i++)ctx.lineTo(xs(i),ys(data[i].balance));
     ctx.lineTo(xs(data.length-1),p.t+ph);ctx.lineTo(xs(0),p.t+ph);
     ctx.closePath();ctx.fillStyle=gr;ctx.fill();
     ctx.beginPath();ctx.moveTo(xs(0),ys(data[0].balance));
     for(let i=1;i<data.length;i++)ctx.lineTo(xs(i),ys(data[i].balance));
-    ctx.strokeStyle='#3b82f6';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+    ctx.strokeStyle=lineColor;ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
     for(let i=0;i<data.length;i++){
-      ctx.beginPath();ctx.arc(xs(i),ys(data[i].balance),4,0,Math.PI*2);
-      ctx.fillStyle='#3b82f6';ctx.fill();
-      ctx.strokeStyle=dk?'#1e293b':'#fff';ctx.lineWidth=2;ctx.stroke();
+      ctx.beginPath();ctx.arc(xs(i),ys(data[i].balance),3.5,0,Math.PI*2);
+      ctx.fillStyle=lineColor;ctx.fill();
+      ctx.strokeStyle=dk?'#1a2235':'#fff';ctx.lineWidth=2;ctx.stroke();
     }
     ctx.fillStyle=tc;ctx.font='10px system-ui';ctx.textAlign='center';
     const st=Math.max(1,Math.floor(data.length/5));
-    for(let i=0;i<data.length;i+=st)ctx.fillText(data[i].date.slice(5),xs(i),H-8);
+    for(let i=0;i<data.length;i+=st)ctx.fillText(data[i].date.slice(5),xs(i),H-6);
   });
 }
 
-// SIDEBAR
+// ── SIDEBAR ──
 function renderSB(){
   const pages=[
-    {id:'dashboard',ic:'📊',lbl:'לוח בקרה'},
+    {id:'dashboard',ic:'🏠',lbl:'לוח בקרה'},
     {id:'trades',ic:'📋',lbl:'עסקאות'},
-    {id:'analytics',ic:'📈',lbl:'ניתוח ביצועים'},
+    {id:'analytics',ic:'📈',lbl:'ניתוח'},
     {id:'settings',ic:'⚙️',lbl:'הגדרות'},
   ];
   document.getElementById('snav').innerHTML=pages.map(p=>`
@@ -322,70 +404,133 @@ function renderSB(){
   if(sel)sel.innerHTML=S.accounts.map(a=>`<option value="${a.id}"${a.id===S.activeId?' selected':''}>${esc(a.name)}</option>`).join('');
 }
 
-// HEADER
-function renderHDR(){
-  const titles={dashboard:'לוח בקרה',trades:'עסקאות',analytics:'ניתוח ביצועים',settings:'הגדרות'};
-  const b=S.activeId?getBal(S.activeId):0;
-  const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
-  document.getElementById('hdr').innerHTML=`
-    <div class="hdr-title">${titles[S.page]||''}</div>
-    <div class="hdr-bal"><span class="hdr-bal-lbl">יתרת חשבון</span>
-      <span class="hdr-bal-val">${c} ${fn(b)}</span></div>
-    <button class="bic" onclick="toggleDark()" title="מצב לילה">${S.dark?'☀️':'🌙'}</button>
-    <button class="btn bp sm" onclick="openAdd()">+ עסקה חדשה</button>`;
+// ── BOTTOM NAV ──
+function renderBNav(){
+  const pages=[
+    {id:'dashboard',ic:'🏠',lbl:'בית'},
+    {id:'trades',ic:'📋',lbl:'עסקאות'},
+    {id:'analytics',ic:'📈',lbl:'ניתוח'},
+    {id:'settings',ic:'⚙️',lbl:'הגדרות'},
+  ];
+  document.getElementById('bnav').innerHTML=pages.map(p=>`
+    <div class="bni ${S.page===p.id?'on':''}" onclick="go('${p.id}')">
+      <div class="bni-ic">${p.ic}</div>
+      <div class="bni-lbl">${p.lbl}</div>
+    </div>`).join('');
 }
 
-// DASHBOARD
+// ── HEADER ──
+function renderHDR(){
+  const titles={dashboard:'לוח בקרה',trades:'עסקאות',analytics:'ניתוח',settings:'הגדרות'};
+  const b=S.activeId?getBal(S.activeId):0;
+  const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
+  const accSel=S.accounts.length>1
+    ?`<select class="fs" onchange="switchAcc(this.value)" style="font-size:12px">${S.accounts.map(ac=>`<option value="${ac.id}"${ac.id===S.activeId?' selected':''}>${esc(ac.name)}</option>`).join('')}</select>`
+    :`<div class="hdr-acc"><span class="hdr-acc-lbl">${a?esc(a.name):'חשבון'}</span><span class="hdr-acc-val">${c} ${fn(b)}</span></div>`;
+  document.getElementById('hdr').innerHTML=`
+    <div class="hdr-title">${titles[S.page]||''}</div>
+    ${accSel}
+    <button class="bic" onclick="toggleDark()" title="מצב לילה">${S.dark?'☀️':'🌙'}</button>
+    <button class="btn bp sm desk-only" onclick="openAdd()">+ עסקה</button>`;
+}
+
+// ── DASHBOARD ──
 function renderDash(){
-  if(!S.activeId){document.getElementById('cnt').innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:70vh"><div style="text-align:center;max-width:380px;padding:32px"><div style="font-size:56px;margin-bottom:16px">📈</div><div style="font-size:22px;font-weight:700;margin-bottom:8px">ברוך הבא ליומן המסחר</div><div style="color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.6">לפני שמתחילים — צור את החשבון הראשון שלך עם שם התיק והיתרה ההתחלתית</div><button class="btn bp" style="font-size:15px;padding:12px 28px" onclick="openAddAcc()">+ צור חשבון ראשון</button></div></div>`;return}
+  if(!S.activeId){
+    document.getElementById('cnt').innerHTML=`
+      <div style="display:flex;align-items:center;justify-content:center;min-height:70vh">
+        <div style="text-align:center;max-width:340px;padding:28px">
+          <div style="font-size:60px;margin-bottom:16px">📈</div>
+          <div style="font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-.4px">ברוך הבא!</div>
+          <div style="color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.7">לפני שמתחילים — צור את החשבון הראשון שלך עם שם התיק והיתרה ההתחלתית</div>
+          <button class="btn bp" style="font-size:15px;padding:14px 32px;border-radius:12px;width:100%" onclick="openAddAcc()">+ צור חשבון ראשון</button>
+        </div>
+      </div>`;
+    return;
+  }
   const st=getStats(S.activeId);
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
   const cv=getCurve(S.activeId);const tp=getTips(S.activeId);
-  const recent=[...S.trades.filter(t=>t.aid===S.activeId)].sort((a,b)=>b.od>a.od?1:-1).slice(0,5);
+  const recent=[...S.trades.filter(t=>t.aid===S.activeId)].sort((a,b)=>b.od>a.od?1:-1).slice(0,4);
+  const pctColor=st.pct>=0?'rgba(255,255,255,.9)':'rgba(255,200,200,.9)';
+
   document.getElementById('cnt').innerHTML=`
-    <div class="sg">
-      <div class="sc b"><div class="sl">יתרה נוכחית</div>
-        <div class="sv">${c} ${fn(st.b)}</div>
-        <div class="ss">קרן: ${c} ${fn(a?.init||0)}</div></div>
-      <div class="sc ${st.tot>=0?'g':'r'}"><div class="sl">רווח / הפסד כולל</div>
-        <div class="sv">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div>
-        <div class="ss">${st.pct>=0?'+':''}${fn(st.pct,2)}% מהקרן</div></div>
-      <div class="sc"><div class="sl">אחוז הצלחה</div>
-        <div class="sv">${fn(st.wr,1)}%</div>
-        <div class="ss">${st.wins.length} רווח / ${st.losses.length} הפסד</div></div>
-      <div class="sc"><div class="sl">R/R ממוצע</div>
-        <div class="sv">${st.avgRR?fn(st.avgRR,2):'-'}</div>
-        <div class="ss">יחס סיכון/תגמול</div></div>
+    <!-- Hero Card mobile -->
+    <div class="hero mob-only">
+      <div class="hero-lbl">יתרה נוכחית</div>
+      <div class="hero-val">${c} ${fn(st.b)}</div>
+      <div class="hero-row">
+        <div class="hero-stat">
+          <div class="hero-stat-v" style="color:${st.tot>=0?'#86efac':'#fca5a5'}">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div>
+          <div class="hero-stat-l">רווח/הפסד</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-v">${fn(st.wr,1)}%</div>
+          <div class="hero-stat-l">אחוז הצלחה</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-v">${st.avgRR?fn(st.avgRR,2):'-'}</div>
+          <div class="hero-stat-l">R/R ממוצע</div>
+        </div>
+      </div>
     </div>
-    <div class="sg" style="margin-top:-6px">
-      <div class="sc"><div class="sl">עסקאות פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
-      <div class="sc"><div class="sl">עסקאות סגורות</div><div class="sv">${st.closed.length}</div></div>
+
+    <!-- Stats grid desktop -->
+    <div class="sg desk-only">
+      <div class="sc b"><div class="sl">יתרה נוכחית</div><div class="sv">${c} ${fn(st.b)}</div><div class="ss">קרן: ${c} ${fn(a?.init||0)}</div></div>
+      <div class="sc ${st.tot>=0?'g':'r'}"><div class="sl">רווח/הפסד כולל</div><div class="sv">${st.tot>=0?'+':''}${c} ${fn(st.tot)}</div><div class="ss">${st.pct>=0?'+':''}${fn(st.pct,2)}% מהקרן</div></div>
+      <div class="sc"><div class="sl">אחוז הצלחה</div><div class="sv">${fn(st.wr,1)}%</div><div class="ss">${st.wins.length} רווח / ${st.losses.length} הפסד</div></div>
+      <div class="sc"><div class="sl">R/R ממוצע</div><div class="sv">${st.avgRR?fn(st.avgRR,2):'-'}</div><div class="ss">יחס סיכון/תגמול</div></div>
+    </div>
+
+    <!-- Mini stats mobile -->
+    <div class="sg mob-only" style="margin-bottom:14px">
+      <div class="sc"><div class="sl">פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
+      <div class="sc"><div class="sl">סגורות</div><div class="sv">${st.closed.length}</div></div>
+      <div class="sc g"><div class="sl">הכי טוב</div><div class="sv">+${fn(st.best)}</div></div>
+      <div class="sc r"><div class="sl">הכי גרוע</div><div class="sv">${fn(st.worst)}</div></div>
+    </div>
+
+    <!-- Desktop second row -->
+    <div class="sg desk-only" style="margin-top:-4px">
+      <div class="sc"><div class="sl">פתוחות</div><div class="sv" style="color:var(--primary)">${st.open.length}</div></div>
+      <div class="sc"><div class="sl">סגורות</div><div class="sv">${st.closed.length}</div></div>
       <div class="sc g"><div class="sl">עסקה טובה ביותר</div><div class="sv">+${c} ${fn(st.best)}</div></div>
       <div class="sc r"><div class="sl">עסקה גרועה ביותר</div><div class="sv">${c} ${fn(st.worst)}</div></div>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:22px">
-      <div class="card">
-        <div class="ch"><span class="ct">📈 עקומת הון</span>
-          <span style="font-size:11px;color:var(--text2)">${cv.length-1} עסקאות סגורות</span></div>
-        <div class="cb"><div class="cc" style="height:200px">
+
+    <!-- Equity curve -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch"><span class="ct">📈 עקומת הון</span>
+        <span style="font-size:11px;color:var(--text2)">${cv.length-1} עסקאות</span></div>
+      <div class="cb" style="padding:14px">
+        <div class="cc">
           <canvas id="ch1"></canvas>
-          ${cv.length<2?'<div class="es" style="padding:16px"><div class="esb">סגור עסקאות כדי לראות גרף</div></div>':''}
-        </div></div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="ct">💡 טיפים</span></div>
-        <div class="cb" style="padding:12px"><div class="tg">${tp.map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
+          ${cv.length<2?'<div class="es" style="padding:18px 0"><div class="esb">סגור עסקאות כדי לראות גרף</div></div>':''}
+        </div>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><span class="ct">🕐 עסקאות אחרונות</span>
-        <button class="btn bs sm" onclick="go('trades')">הצג הכל</button></div>
-      <div class="tw">${tradeTable(recent,true)}</div>
-    </div>`;
+
+    <!-- Tips -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch"><span class="ct">💡 טיפים אישיים</span></div>
+      <div class="cb" style="padding:12px 14px"><div class="tg">${tp.map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
+    </div>
+
+    <!-- Recent trades -->
+    <div class="section-title">עסקאות אחרונות</div>
+    ${mob()
+      ? (recent.length ? recent.map(t=>tradeCard(t,c,true)).join('') : '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">אין עסקאות</div></div>')
+      : `<div class="card"><div class="ch"><span class="ct">עסקאות אחרונות</span><button class="btn bs sm" onclick="go('trades')">הצג הכל</button></div><div class="tw">${tradeTable(recent,true)}</div></div>`
+    }
+    ${mob()&&recent.length?`<button class="btn bs" style="width:100%;justify-content:center;margin-top:4px" onclick="go('trades')">הצג הכל →</button>`:''}
+  `;
   if(cv.length>=2)drawChart('ch1',cv);
 }
 
-// TRADES PAGE
+// ── TRADES PAGE ──
 function renderTrades(){
   const all=S.trades.filter(t=>t.aid===S.activeId);
   let filt=all;
@@ -394,25 +539,97 @@ function renderTrades(){
   if(S.df==='long')filt=filt.filter(t=>t.dir==='long');
   if(S.df==='short')filt=filt.filter(t=>t.dir==='short');
   filt=[...filt].sort((a,b)=>b.od>a.od?1:-1);
+  const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
+
   document.getElementById('cnt').innerHTML=`
-    <div class="row" style="margin-bottom:16px">
-      <div class="tabs" style="flex:none">
-        <button class="tab ${S.tf==='all'?'on':''}" onclick="setTF('all')">הכל (${all.length})</button>
-        <button class="tab ${S.tf==='open'?'on':''}" onclick="setTF('open')">פתוחות (${all.filter(t=>t.status==='open').length})</button>
-        <button class="tab ${S.tf==='closed'?'on':''}" onclick="setTF('closed')">סגורות (${all.filter(t=>t.status==='closed').length})</button>
-      </div>
+    <div class="tabs">
+      <button class="tab ${S.tf==='all'?'on':''}" onclick="setTF('all')">הכל (${all.length})</button>
+      <button class="tab ${S.tf==='open'?'on':''}" onclick="setTF('open')">פתוחות (${all.filter(t=>t.status==='open').length})</button>
+      <button class="tab ${S.tf==='closed'?'on':''}" onclick="setTF('closed')">סגורות (${all.filter(t=>t.status==='closed').length})</button>
+    </div>
+    <div class="row" style="margin-bottom:14px">
       <select class="fs" onchange="setDF(this.value)">
         <option value="all"${S.df==='all'?' selected':''}>כל הכיוונים</option>
         <option value="long"${S.df==='long'?' selected':''}>Long בלבד</option>
         <option value="short"${S.df==='short'?' selected':''}>Short בלבד</option>
       </select>
-      <button class="btn bp" onclick="openAdd()" style="margin-right:auto">+ עסקה חדשה</button>
+      <button class="btn bp sm desk-only" onclick="openAdd()" style="margin-right:auto">+ עסקה חדשה</button>
     </div>
-    <div class="card"><div class="tw">${tradeTable(filt,false)}</div></div>`;
+    ${mob()
+      ? (filt.length ? filt.map(t=>tradeCard(t,c,false)).join('') : '<div class="es"><div class="ei">📋</div><div class="et">אין עסקאות</div><div class="esb">לחץ + כדי להוסיף</div></div>')
+      : `<div class="card"><div class="tw">${tradeTable(filt,false)}</div></div>`
+    }
+  `;
 }
 function setTF(f){S.tf=f;renderTrades()}
 function setDF(f){S.df=f;renderTrades()}
 
+// ── TRADE CARD mobile ──
+function tradeCard(t,c,compact){
+  const pnlColor=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
+  const dirBadge=t.dir==='long'?'<span class="badge bg3">▲ Long</span>':'<span class="badge br">▼ Short</span>';
+  const statBadge=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
+  const pnlStr=t.pnl!=null?`<span style="color:${pnlColor};font-weight:800">${t.pnl>=0?'+':''}${c} ${fn(t.pnl)}</span>`:'';
+  const sc=t.status==='closed'?tradeScore(t):null;
+  const scColor=sc!=null?(sc>=70?'var(--green)':sc>=40?'var(--yellow)':'var(--red)'):'';
+
+  let body=`
+    <div class="tc-body">
+      <div class="tc-kv"><span class="tc-k">כניסה</span><span class="tc-v">${fn(t.ep)}</span></div>
+      <div class="tc-kv"><span class="tc-k">סטופ</span><span class="tc-v" style="color:var(--red)">${fn(t.sp)}</span></div>`;
+  if(t.xp!=null){
+    body+=`<div class="tc-kv"><span class="tc-k">יציאה</span><span class="tc-v" style="color:var(--green)">${fn(t.xp)}</span></div>`;
+  } else if(t.lp){
+    body+=`<div class="tc-kv"><span class="tc-k">יעד</span><span class="tc-v" style="color:var(--primary)">${fn(t.lp)}</span></div>`;
+  }
+  body+=`<div class="tc-kv"><span class="tc-k">כמות</span><span class="tc-v">${fn(t.shares,0)}</span></div>`;
+  if(t.rr)body+=`<div class="tc-kv"><span class="tc-k">R/R</span><span class="tc-v">${fn(t.rr,2)}</span></div>`;
+  if(t.rp!=null){const rl=rlevel(t.rp);body+=`<div class="tc-kv"><span class="tc-k">סיכון</span><span class="tc-v"><span class="badge ${rl.cls}" style="font-size:10px">${fn(t.rp,2)}%</span></span></div>`;}
+  body+='</div>';
+
+  let analysis='';
+  if(!compact&&t.status==='closed'&&sc!=null){
+    const sg=getSugg(t);
+    analysis=`<div class="tc-analysis">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div style="flex:1">
+          <div style="font-size:10px;color:var(--text2);margin-bottom:3px">ציון ביצועים</div>
+          <div style="font-weight:800;font-size:20px;color:${scColor}">${sc}<span style="font-size:12px;font-weight:500;color:var(--text2)">/100</span></div>
+          <div class="tc-score-bar"><div class="tc-score-fill" style="width:${sc}%;background:${scColor}"></div></div>
+        </div>
+        ${t.pp!=null?`<div style="text-align:center;background:var(--card);border-radius:10px;padding:8px 12px;border:1px solid var(--border)">
+          <div style="font-size:18px;font-weight:800;color:${pnlColor}">${t.pp>=0?'+':''}${fn(t.pp,1)}%</div>
+          <div style="font-size:10px;color:var(--text2)">תשואה</div>
+        </div>`:''}
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px">המלצות:</div>
+      ${sg.map(s=>`<div class="si">${esc(s)}</div>`).join('')}
+    </div>`;
+  }
+
+  let actions='';
+  if(!compact){
+    actions=`<div class="tc-actions">
+      ${t.status==='open'?`<button class="btn bg2 sm" style="flex:1;justify-content:center" onclick="openClose('${t.id}')">✓ סגור עסקה</button>`:''}
+      <button class="btn bd sm" ${t.status==='open'?'style="flex:none"':'style="flex:1;justify-content:center"'} onclick="delTrade('${t.id}')">🗑 מחק</button>
+    </div>`;
+  }
+
+  return`<div class="tc">
+    <div class="tc-head">
+      <div class="tc-sym">${esc(t.symbol)}</div>
+      ${dirBadge}
+      ${statBadge}
+      <div class="tc-pnl" style="color:${pnlColor}">${pnlStr}</div>
+    </div>
+    <div style="padding:0 15px 4px;font-size:11px;color:var(--text3)">${fd(t.od)}${t.cd?' — '+fd(t.cd):''}</div>
+    ${body}
+    ${analysis}
+    ${actions}
+  </div>`;
+}
+
+// ── TABLE desktop ──
 function tradeTable(trades,compact){
   if(!trades.length)return'<div class="es"><div class="ei">📋</div><div class="et">אין עסקאות</div><div class="esb">הוסף עסקה חדשה</div></div>';
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
@@ -421,11 +638,10 @@ function tradeTable(trades,compact){
     <th>כמות</th><th>רווח/הפסד</th><th>סיכון%</th><th>R/R</th>
     <th>סטטוס</th><th>תאריך</th>${compact?'':'<th>פעולות</th>'}
   </tr></thead><tbody>
-  ${trades.map(t=>tradeRow(t,c,compact)).join('')}
+  ${trades.map(t=>tradeRowDesk(t,c,compact)).join('')}
   </tbody></table>`;
 }
-
-function tradeRow(t,c,compact){
+function tradeRowDesk(t,c,compact){
   const pc=t.pnl>0?'var(--green)':t.pnl<0?'var(--red)':'var(--text)';
   const sb=t.status==='open'?'<span class="badge bb">פתוחה</span>':'<span class="badge bgr">סגורה</span>';
   const db=t.dir==='long'?'<span class="badge bg3">Long ▲</span>':'<span class="badge br">Short ▼</span>';
@@ -439,24 +655,23 @@ function tradeRow(t,c,compact){
     const sg=getSugg(t);const rl=t.rp!=null?rlevel(t.rp):null;
     arow=`<tr style="background:var(--bg2)"><td colspan="12" style="padding:0 10px 10px">
       <div class="ac2">
-        <div style="font-weight:600;margin-bottom:8px;font-size:12px">📊 ניתוח עסקה</div>
+        <div style="font-weight:700;margin-bottom:8px;font-size:12px">📊 ניתוח עסקה</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
-          <div><div style="font-size:10px;color:var(--text2)">ציון ביצועים</div>
-            <div style="font-weight:700;font-size:17px;color:${scc}">${sc}/100</div>
+          <div><div style="font-size:10px;color:var(--text2)">ציון</div>
+            <div style="font-weight:700;font-size:18px;color:${scc}">${sc}/100</div>
             <div class="sb2"><div class="sf" style="width:${sc}%;background:${scc}"></div></div></div>
-          <div><div style="font-size:10px;color:var(--text2)">סיכון בעסקה</div>
+          <div><div style="font-size:10px;color:var(--text2)">סיכון</div>
             <div style="font-weight:600">${c} ${fn(t.ra||0)}</div>
-            <div style="font-size:10px;color:var(--text2)">${fn(t.rp||0,2)}% מהחשבון</div></div>
+            <div style="font-size:10px;color:var(--text2)">${fn(t.rp||0,2)}%</div></div>
           <div><div style="font-size:10px;color:var(--text2)">רמת סיכון</div>
             ${rl?`<span class="badge ${rl.cls}">${rl.label}</span>`:'—'}</div>
           <div><div style="font-size:10px;color:var(--text2)">R/R בפועל</div>
             <div style="font-weight:600">${t.rr?fn(t.rr,2):'—'}</div></div>
         </div>
-        <div class="as3"><div style="font-size:10px;font-weight:600;color:var(--text2);margin-bottom:5px">המלצות:</div>
+        <div class="as3"><div style="font-size:10px;font-weight:600;color:var(--text2);margin-bottom:4px">המלצות:</div>
           ${sg.map(s=>`<div class="si">${esc(s)}</div>`).join('')}
         </div>
-      </div>
-    </td></tr>`;
+      </div></td></tr>`;
   }
   return`<tr>
     <td class="tsym">${esc(t.symbol)}</td><td>${db}</td>
@@ -470,11 +685,14 @@ function tradeRow(t,c,compact){
   </tr>${arow}`;
 }
 
-// ANALYTICS
+// ── ANALYTICS ──
 function renderAnalytics(){
   const closed=S.trades.filter(t=>t.aid===S.activeId&&t.status==='closed');
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
-  if(!closed.length){document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">📈</div><div class="et">אין מספיק נתונים</div><div class="esb">סגור עסקאות כדי לראות ניתוח</div></div>';return}
+  if(!closed.length){
+    document.getElementById('cnt').innerHTML='<div class="es"><div class="ei">📈</div><div class="et">אין מספיק נתונים</div><div class="esb">סגור עסקאות כדי לראות ניתוח</div></div>';
+    return;
+  }
   const wins=closed.filter(t=>t.pnl>0);const losses=closed.filter(t=>t.pnl<=0);
   const tot=closed.reduce((s,t)=>s+(t.pnl||0),0);
   const aw=wins.length?wins.reduce((s,t)=>s+(t.pnl||0),0)/wins.length:0;
@@ -487,94 +705,120 @@ function renderAnalytics(){
   closed.forEach(t=>{const m=(t.cd||'').slice(0,7);if(!m)return;if(!monthly[m])monthly[m]={pnl:0,cnt:0};monthly[m].pnl+=t.pnl||0;monthly[m].cnt++});
   const rrs=closed.filter(t=>t.rr);const avgRR=rrs.length?rrs.reduce((s,t)=>s+t.rr,0)/rrs.length:0;
   document.getElementById('cnt').innerHTML=`
-    <div class="sg" style="margin-bottom:20px">
+    <div class="sg" style="margin-bottom:14px">
       <div class="sc"><div class="sl">פקטור רווח</div>
         <div class="sv" style="color:${pf>=1?'var(--green)':'var(--red)'}">${isFinite(pf)&&pf<99?fn(pf,2):'∞'}</div>
-        <div class="ss">יחס רווח/הפסד כולל</div></div>
-      <div class="sc g"><div class="sl">רווח ממוצע בניצחון</div><div class="sv">${c} ${fn(aw)}</div></div>
-      <div class="sc r"><div class="sl">הפסד ממוצע</div><div class="sv">${c} ${fn(Math.abs(al))}</div></div>
-      <div class="sc"><div class="sl">סיכון ממוצע לעסקה</div><div class="sv">${fn(ar,2)}%</div></div>
+        <div class="ss">רווח/הפסד יחס</div></div>
+      <div class="sc g"><div class="sl">ממוצע ניצחון</div><div class="sv">${c} ${fn(aw)}</div></div>
+      <div class="sc r"><div class="sl">ממוצע הפסד</div><div class="sv">${c} ${fn(Math.abs(al))}</div></div>
+      <div class="sc"><div class="sl">סיכון ממוצע</div><div class="sv">${fn(ar,2)}%</div></div>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:22px">
-      <div class="card"><div class="ch"><span class="ct">📈 עקומת הון</span></div>
-        <div class="cb"><div class="cc" style="height:200px"><canvas id="ch2"></canvas></div></div></div>
-      <div class="card"><div class="ch"><span class="ct">📊 פירוט</span></div>
-        <div class="cb" style="padding:10px">
-          ${[['מנצחות',`${wins.length} (${fn((wins.length/closed.length)*100,1)}%)`],
-             ['מפסידות',`${losses.length} (${fn((losses.length/closed.length)*100,1)}%)`],
-             ['רווח כולל',`${c} ${fn(tot)}`],
-             ['עסקה טובה',`+${c} ${fn(Math.max(...closed.map(t=>t.pnl||0)))}`],
-             ['עסקה גרועה',`${c} ${fn(Math.min(...closed.map(t=>t.pnl||0)))}`],
-             ['R/R ממוצע',avgRR?fn(avgRR,2):'—'],
-          ].map(([l,v])=>`<div class="ar" style="padding:7px 4px"><span class="al2">${l}</span><span class="av">${v}</span></div>`).join('')}
-        </div>
+
+    <!-- Equity curve -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch"><span class="ct">📈 עקומת הון</span></div>
+      <div class="cb" style="padding:14px"><div class="cc"><canvas id="ch2"></canvas></div></div>
+    </div>
+
+    <!-- Breakdown -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch"><span class="ct">📊 פירוט כללי</span></div>
+      <div class="cb">
+        ${[['עסקאות מנצחות',`${wins.length} (${fn((wins.length/closed.length)*100,1)}%)`],
+           ['עסקאות מפסידות',`${losses.length} (${fn((losses.length/closed.length)*100,1)}%)`],
+           ['רווח כולל',`${c} ${fn(tot)}`],
+           ['עסקה טובה ביותר',`+${c} ${fn(Math.max(...closed.map(t=>t.pnl||0)))}`],
+           ['עסקה גרועה ביותר',`${c} ${fn(Math.min(...closed.map(t=>t.pnl||0)))}`],
+           ['R/R ממוצע',avgRR?fn(avgRR,2):'—'],
+        ].map(([l,v])=>`<div class="ar" style="padding:9px 2px"><span style="color:var(--text2)">${l}</span><span style="font-weight:700">${v}</span></div>`).join('')}
       </div>
     </div>
-    <div class="card" style="margin-bottom:20px"><div class="ch"><span class="ct">📅 ביצועים חודשיים</span></div>
+
+    <!-- Monthly -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch"><span class="ct">📅 ביצועים חודשיים</span></div>
       <div class="cb"><div style="display:flex;gap:8px;flex-wrap:wrap">
         ${Object.entries(monthly).sort().map(([m,d])=>`
-          <div style="background:${d.pnl>=0?'var(--gbg)':'var(--rbg)'};border-radius:10px;padding:10px 14px;min-width:110px;text-align:center">
-            <div style="font-size:10px;color:var(--text2);margin-bottom:3px">${m}</div>
-            <div style="font-weight:700;font-size:15px;color:${d.pnl>=0?'var(--green)':'var(--red)'}">${d.pnl>=0?'+':''}${c} ${fn(d.pnl)}</div>
-            <div style="font-size:10px;color:var(--text2)">${d.cnt} עסקאות</div>
+          <div style="background:${d.pnl>=0?'var(--gbg)':'var(--rbg)'};border-radius:12px;padding:12px 14px;min-width:100px;text-align:center;border:1px solid ${d.pnl>=0?'rgba(22,163,74,.2)':'rgba(220,38,38,.2)'}">
+            <div style="font-size:10px;color:var(--text2);margin-bottom:3px;font-weight:600">${m}</div>
+            <div style="font-weight:800;font-size:15px;color:${d.pnl>=0?'var(--green)':'var(--red)'}">${d.pnl>=0?'+':''}${c} ${fn(d.pnl)}</div>
+            <div style="font-size:10px;color:var(--text2);margin-top:2px">${d.cnt} עסקאות</div>
           </div>`).join('')}
       </div></div>
     </div>
-    <div class="card"><div class="ch"><span class="ct">💡 המלצות לשיפור</span></div>
-      <div class="cb"><div class="tg">${getTips(S.activeId).map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
+
+    <!-- Tips -->
+    <div class="card">
+      <div class="ch"><span class="ct">💡 המלצות לשיפור</span></div>
+      <div class="cb" style="padding:12px 14px"><div class="tg">${getTips(S.activeId).map(t=>`<div class="ti">${esc(t)}</div>`).join('')}</div></div>
     </div>`;
   if(cv.length>=2)drawChart('ch2',cv);
 }
 
-// SETTINGS
+// ── SETTINGS ──
 function renderSettings(){
   document.getElementById('cnt').innerHTML=`
     <div style="max-width:560px">
+      <!-- Accounts -->
+      <div class="section-title">חשבונות</div>
       <div class="card" style="margin-bottom:18px">
         <div class="ch"><span class="ct">🏦 ניהול חשבונות</span>
-          <button class="btn bp sm" onclick="openAddAcc()">+ חשבון חדש</button></div>
+          <button class="btn bp sm" onclick="openAddAcc()">+ חדש</button></div>
         <div class="cb">
-          ${S.accounts.map(a=>{const b=getBal(a.id);const act=a.id===S.activeId;
+          ${S.accounts.length?S.accounts.map(a=>{const b=getBal(a.id);const act=a.id===S.activeId;
             return`<div class="ai2">
-              ${act?'<div class="dot"></div>':'<div style="width:8px"></div>'}
-              <div style="flex:1"><div class="an2">${esc(a.name)}</div>
-                <div class="ab2">קרן: ${a.currency} ${fn(a.init)} | יתרה: ${a.currency} ${fn(b)}</div></div>
+              ${act?'<div class="dot"></div>':'<div style="width:9px"></div>'}
+              <div style="flex:1">
+                <div class="an2">${esc(a.name)}</div>
+                <div class="ab2">קרן: ${a.currency} ${fn(a.init)} | יתרה: ${a.currency} ${fn(b)}</div>
+              </div>
               <button class="btn bs sm" onclick="switchAcc('${a.id}')">${act?'פעיל':'עבור'}</button>
               <button class="btn bd sm" onclick="delAcc('${a.id}')">מחק</button>
-            </div>`;}).join('')}
+            </div>`;}).join('')
+          :'<div style="color:var(--text2);font-size:13px;padding:4px 0">אין חשבונות — צור חשבון ראשון</div>'}
         </div>
       </div>
+
+      <!-- Display -->
+      <div class="section-title">תצוגה</div>
       <div class="card" style="margin-bottom:18px">
-        <div class="ch"><span class="ct">🎨 תצוגה</span></div>
-        <div class="cb"><div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
-          <span>מצב לילה</span>
-          <button class="btn ${S.dark?'bp':'bs'}" onclick="toggleDark()">${S.dark?'☀️ בהיר':'🌙 כהה'}</button>
+        <div class="ch"><span class="ct">🎨 מצב תצוגה</span></div>
+        <div class="cb"><div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:14px">מצב לילה</span>
+          <button class="btn ${S.dark?'bp':'bs'}" onclick="toggleDark()" style="min-width:90px;justify-content:center">
+            ${S.dark?'☀️ בהיר':'🌙 כהה'}
+          </button>
         </div></div>
       </div>
-      <div class="card"><div class="ch"><span class="ct">📊 סטטיסטיקות</span></div>
+
+      <!-- Stats -->
+      <div class="section-title">סטטיסטיקות</div>
+      <div class="card">
+        <div class="ch"><span class="ct">📊 נתוני מערכת</span></div>
         <div class="cb">
-          ${[['חשבונות',S.accounts.length],['עסקאות סה"כ',S.trades.length],
-             ['פתוחות',S.trades.filter(t=>t.status==='open').length],
-             ['סגורות',S.trades.filter(t=>t.status==='closed').length]
-          ].map(([l,v])=>`<div class="ar" style="padding:7px 4px"><span class="al2">${l}</span><span class="av">${v}</span></div>`).join('')}
+          ${[['חשבונות',S.accounts.length],
+             ['עסקאות סה"כ',S.trades.length],
+             ['עסקאות פתוחות',S.trades.filter(t=>t.status==='open').length],
+             ['עסקאות סגורות',S.trades.filter(t=>t.status==='closed').length]
+          ].map(([l,v])=>`<div class="ar" style="padding:9px 2px"><span style="color:var(--text2)">${l}</span><span style="font-weight:700">${v}</span></div>`).join('')}
         </div>
       </div>
     </div>`;
 }
 
-// ADD TRADE MODAL
+// ── ADD TRADE MODAL ──
 function openAdd(){
   const a=S.accounts.find(x=>x.id===S.activeId);
-  if(!a){alert('אנא בחר חשבון תחילה');return}
+  if(!a){alert('אנא צור חשבון תחילה');return}
   const c=a?.currency||'₪';
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
       <div class="md">
-        <div class="mh"><span class="mt2">➕ עסקה חדשה</span>
+        <div class="mh" style="position:relative"><span class="mt2">➕ עסקה חדשה</span>
           <button class="bic" onclick="closeM()">✕</button></div>
         <div class="mb2">
           <div class="fg"><label class="fl">נייר ערך / סמל</label>
-            <input class="fi" id="fs2" placeholder="לדוגמה: AAPL" style="text-transform:uppercase"></div>
+            <input class="fi" id="fs2" placeholder="לדוגמה: AAPL" style="text-transform:uppercase;font-size:16px"></div>
           <div class="fg"><label class="fl">כיוון עסקה</label>
             <div class="dt">
               <button id="bl2" class="al" onclick="setDir('long')">▲ Long (קנייה)</button>
@@ -606,14 +850,12 @@ function openAdd(){
       </div>
     </div>`;
 }
-
 function setDir(d){
   document.getElementById('fd3').value=d;
   document.getElementById('bl2').className=d==='long'?'al':'';
   document.getElementById('bs3').className=d==='short'?'as':'';
   calcPrev();
 }
-
 function calcPrev(){
   const e=+document.getElementById('fe2')?.value||0;
   const s=+document.getElementById('fst2')?.value||0;
@@ -632,7 +874,6 @@ function calcPrev(){
       ${rv?`<div class="cr"><span>יחס R/R:</span><strong style="color:${rv>=2?'var(--green)':rv<1?'var(--red)':'var(--yellow)'}">${fn(rv,2)}</strong></div>`:''}</div>`;
   }else prev.innerHTML='';
 }
-
 function submitAdd(){
   const sym=(document.getElementById('fs2')?.value||'').trim().toUpperCase();
   const d=document.getElementById('fd3')?.value||'long';
@@ -655,25 +896,25 @@ function submitAdd(){
   save();closeM();render();
 }
 
-// CLOSE TRADE MODAL
+// ── CLOSE TRADE MODAL ──
 function openClose(id){
   const t=S.trades.find(x=>x.id===id);if(!t)return;
   const a=S.accounts.find(x=>x.id===S.activeId);const c=a?.currency||'₪';
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
-      <div class="md" style="max-width:380px">
-        <div class="mh"><span class="mt2">🔒 סגירת עסקה — ${esc(t.symbol)}</span>
+      <div class="md" style="max-width:400px">
+        <div class="mh" style="position:relative"><span class="mt2">🔒 סגירת ${esc(t.symbol)}</span>
           <button class="bic" onclick="closeM()">✕</button></div>
         <div class="mb2">
-          <div style="background:var(--bg2);border-radius:10px;padding:10px;margin-bottom:14px;font-size:12px">
+          <div style="background:var(--bg2);border-radius:12px;padding:12px;margin-bottom:16px">
             <div class="cr"><span style="color:var(--text2)">כיוון:</span><strong>${t.dir==='long'?'Long ▲':'Short ▼'}</strong></div>
             <div class="cr"><span style="color:var(--text2)">כניסה:</span><strong>${fn(t.ep)}</strong></div>
-            <div class="cr"><span style="color:var(--text2)">סטופ:</span><strong>${fn(t.sp)}</strong></div>
-            ${t.lp?`<div class="cr"><span style="color:var(--text2)">יעד:</span><strong>${fn(t.lp)}</strong></div>`:''}
+            <div class="cr"><span style="color:var(--text2)">סטופ:</span><strong style="color:var(--red)">${fn(t.sp)}</strong></div>
+            ${t.lp?`<div class="cr"><span style="color:var(--text2)">יעד:</span><strong style="color:var(--primary)">${fn(t.lp)}</strong></div>`:''}
             <div class="cr"><span style="color:var(--text2)">כמות:</span><strong>${t.shares}</strong></div>
           </div>
           <div class="fg"><label class="fl">מחיר יציאה</label>
-            <input class="fi" id="cx2" type="number" step="0.01" placeholder="0.00" oninput="prevClose('${id}')"></div>
+            <input class="fi" id="cx2" type="number" step="0.01" placeholder="0.00" oninput="prevClose('${id}')" style="font-size:18px"></div>
           <div id="cprev4"></div>
           <div class="fg"><label class="fl">תאריך סגירה</label>
             <input class="fi" id="cdt2" type="date" value="${today()}"></div>
@@ -685,7 +926,6 @@ function openClose(id){
       </div>
     </div>`;
 }
-
 function prevClose(id){
   const t=S.trades.find(x=>x.id===id);if(!t)return;
   const ex=+document.getElementById('cx2')?.value||0;
@@ -694,12 +934,11 @@ function prevClose(id){
   const p=calcPnL(t.dir,t.ep,ex,t.shares);
   const pp=(p/t.inv)*100;const col=p>=0?'var(--green)':'var(--red)';
   document.getElementById('cprev4').innerHTML=`
-    <div class="cd2" style="border-color:${col};background:${p>=0?'var(--gbg)':'var(--rbg)'}">
-      <div class="cr"><span>רווח/הפסד:</span><strong style="color:${col};font-size:15px">${p>=0?'+':''}${c} ${fn(p)}</strong></div>
-      <div class="cr"><span>אחוז:</span><strong style="color:${col}">${pp>=0?'+':''}${fn(pp,2)}%</strong></div>
+    <div class="cd2" style="border-color:${col};background:${p>=0?'var(--gbg)':'var(--rbg)'};margin-bottom:14px">
+      <div class="cr"><span>רווח/הפסד:</span><strong style="color:${col};font-size:18px">${p>=0?'+':''}${c} ${fn(p)}</strong></div>
+      <div class="cr"><span>תשואה:</span><strong style="color:${col}">${pp>=0?'+':''}${fn(pp,2)}%</strong></div>
     </div>`;
 }
-
 function submitClose(id){
   const ex=+document.getElementById('cx2')?.value||0;
   const cd=document.getElementById('cdt2')?.value||today();
@@ -709,39 +948,38 @@ function submitClose(id){
   Object.assign(t,{status:'closed',xp:ex,cd,pnl:p,pp});
   save();closeM();render();
 }
-
 function delTrade(id){
   if(!confirm('למחוק עסקה זו?'))return;
   S.trades=S.trades.filter(t=>t.id!==id);save();render();
 }
 
-// ACCOUNT MODAL
+// ── ACCOUNT MODAL ──
 function openAddAcc(){
   document.getElementById('mc').innerHTML=`
     <div class="mo" onclick="if(event.target===this)closeM()">
-      <div class="md" style="max-width:360px">
-        <div class="mh"><span class="mt2">🏦 חשבון חדש</span>
+      <div class="md" style="max-width:380px">
+        <div class="mh" style="position:relative"><span class="mt2">🏦 חשבון חדש</span>
           <button class="bic" onclick="closeM()">✕</button></div>
         <div class="mb2">
           <div class="fg"><label class="fl">שם החשבון</label>
-            <input class="fi" id="an2" placeholder="לדוגמה: תיק IRA"></div>
+            <input class="fi" id="an2" placeholder="לדוגמה: תיק IRA" style="font-size:16px"></div>
           <div class="fg"><label class="fl">יתרה התחלתית</label>
-            <input class="fi" id="ab3" type="number" step="100" placeholder="0"></div>
+            <input class="fi" id="ab3" type="number" step="100" placeholder="0" style="font-size:16px"></div>
           <div class="fg"><label class="fl">מטבע</label>
-            <select class="fi" id="ac2">
-              <option value="₪">₪ שקל</option>
-              <option value="$">$ דולר</option>
+            <select class="fi" id="ac2" style="font-size:16px">
+              <option value="₪">₪ שקל ישראלי</option>
+              <option value="$">$ דולר אמריקאי</option>
               <option value="€">€ יורו</option>
             </select></div>
         </div>
         <div class="mf">
-          <button class="btn bp" onclick="submitAcc()">הוסף</button>
+          <button class="btn bp" onclick="submitAcc()">צור חשבון</button>
           <button class="btn bs" onclick="closeM()">ביטול</button>
         </div>
       </div>
     </div>`;
+  setTimeout(()=>document.getElementById('an2')?.focus(),100);
 }
-
 function submitAcc(){
   const n=(document.getElementById('an2')?.value||'').trim();
   const b=+document.getElementById('ab3')?.value||0;
@@ -751,7 +989,6 @@ function submitAcc(){
   const a={id:uid(),name:n,init:b,currency:curr,created:new Date().toISOString()};
   S.accounts.push(a);S.activeId=a.id;save();closeM();render();
 }
-
 function delAcc(id){
   if(S.accounts.length===1){alert('לא ניתן למחוק את החשבון האחרון');return}
   if(!confirm('מחיקת חשבון תמחק גם את כל העסקאות שלו. להמשיך?'))return;
@@ -760,18 +997,17 @@ function delAcc(id){
   if(S.activeId===id)S.activeId=S.accounts[0]?.id||null;
   save();render();
 }
-
 function closeM(){document.getElementById('mc').innerHTML=''}
 
-// ROUTING
+// ── ROUTING ──
 function go(p){S.page=p;render()}
 function switchAcc(id){S.activeId=id;save();render()}
 function toggleDark(){S.dark=!S.dark;document.documentElement.dataset.dark=S.dark;save();render()}
 
-// RENDER
+// ── RENDER ──
 function render(){
   document.documentElement.dataset.dark=S.dark;
-  renderSB();renderHDR();
+  renderSB();renderBNav();renderHDR();
   switch(S.page){
     case'dashboard':renderDash();break;
     case'trades':renderTrades();break;
@@ -780,16 +1016,20 @@ function render(){
   }
 }
 
-// SERVICE WORKER
+// ── SERVICE WORKER ──
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 }
 
-// INIT
+// ── INIT ──
 load();render();
 window.addEventListener('resize',()=>{
-  if(S.page==='dashboard'){const cv=getCurve(S.activeId);if(cv.length>=2)drawChart('ch1',cv)}
-  if(S.page==='analytics'){const cv=getCurve(S.activeId);if(cv.length>=2)drawChart('ch2',cv)}
+  render();
+  const cv=getCurve(S.activeId);
+  if(cv.length>=2){
+    if(S.page==='dashboard')drawChart('ch1',cv);
+    if(S.page==='analytics')drawChart('ch2',cv);
+  }
 });
 </script>
 </body>
